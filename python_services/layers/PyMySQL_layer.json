@@ -1,0 +1,15 @@
+{
+    "Content": {
+        "Location": "https://prod-04-2014-layers.s3.amazonaws.com/snapshots/951661633871/PyMySQL-67a27492-f43f-4ba3-b367-45b92a600adc?versionId=ExicWS0kSRr21cuDk72wQnvwjXy1cXWU&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEE8aCXVzLWVhc3QtMSJHMEUCIAPSdMJ60JZlwp9pEe1FbQ%2FmRBfBYaisZeB8OmB9z%2BcNAiEAsgfiSIWbl2IKSSArMcgUeNiYSJhEOwcoCMdDfOYkPlcq2gIIl%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw3NDk2Nzg5MDI4MzkiDG3E3uroV2XTOo45HSquAqk5bwrAeayhmDKpWLWinSRXS%2BBZjz7VaQzsYYOkZjNZzhHfsi1VQWO3aY55Adf6%2BnghmVjBPWWpBTgWJLHlCi64aClgBqceashJlnKit1psKlPfzUewuK9sTEGKe0IxSDmSH7Qcm9066H7oa1qqgHHvvFw0pfq27SvGFJ8pXVgpuJErJ41A%2FZD7cpemLJ77V4IQBoEy7NFZtePNOnxVZvniz19AKaLbfXyAaC%2Byq8ettBx%2By4fY9mPhcJfd9Vj95%2B7cGhou1l5vGieqY2ihFiEl3N2PJzRzEN8Ad2ANJcudywx396E2jvKQBBut0NJlTZjT0nozvJTC8lRUNmtmVEIyuoIZtj%2Fwjh7nfEwofA9J55NkaKQUXQ83KE9reyXrHYEryNpHqRHEXoi%2Fo46mMKHQsO8FOs4CsAG2UxYsH4%2FCaooyz9qvw%2Fq34hCKhpHCDOSWazbnQ%2BcE%2Fj9dL%2BTVFUwtAjM%2BtLI6WHghG4PZiyeRnACQLkMx8rl2cQ1voNjjkXFkKF%2Bxs%2B69AvRBKd4%2Fnj5xfFOAP9mrrUCfrJ9xewsdotenwVAGKm9RBfE9c%2BjoSUzeJF0rr63ZMnY%2BwqHLRVE5JQ%2F%2Fibp%2FkdGpFc46udAgkltXzgau%2BDt7i0TnQ%2BkC1dRDnYhivArTNThXOVAebbKZe%2Bm%2Bkyx%2BjOYCdfA%2F7PwXdoD8fdgR%2FieaSX4Zolsg95LdxBdeQYt%2FIdFuPqpT2OsT04jBFeX1AUcyd8qZklVVJWiLn%2Fxe22CTeBY2XApMnXRdHW%2B%2F6W39BNeRywfxEqE5cWA92WQIgzzsSgrcAPgkABK6V11dd1jlPHVYp9yUZeK98kZqbg9yR5P1ljmVnaMCeqJRSg%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191207T234512Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIA25DCYHY3V6FMHAU7%2F20191207%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=19aed7dfcfe94678e914a86e7946217e08236f380d81a2ed89f7b1ef339eb62b",
+        "CodeSha256": "6hHCgpjN5BQgq42s1R0EuC3+wjJGBE9ISeE9OKh2DRo=",
+        "CodeSize": 2062075
+    },
+    "LayerArn": "arn:aws:lambda:us-east-1:951661633871:layer:PyMySQL",
+    "LayerVersionArn": "arn:aws:lambda:us-east-1:951661633871:layer:PyMySQL:1",
+    "Description": "",
+    "CreatedDate": "2019-12-07T23:45:18.658+0000",
+    "Version": 1,
+    "CompatibleRuntimes": [
+        "python3.7"
+    ]
+}

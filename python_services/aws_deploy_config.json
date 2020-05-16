@@ -1,0 +1,14 @@
+{
+	"lambda.function.name": "tcss562_project_tlq",
+	"lambda.function.handler" : "lambda_function.lambda_handler",
+	"lambda.role.arn": "arn:aws:iam::951661633871:role/tcss562_project",
+	"lambda.subnets": "",
+	"lambda.security.groups": "",
+	"lambda.runtime.version": "python3.7",
+
+	"sample.request.data":
+	{
+		"csv_file_url": "http://cssgate.insttech.washington.edu/~varikmp/tcss562/100_sales_records.csv",
+		"csv_file_name": "100_sales_records.csv"
+	}
+}

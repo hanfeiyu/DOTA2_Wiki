@@ -1,0 +1,15 @@
+{
+    "Content": {
+        "Location": "https://prod-04-2014-layers.s3.amazonaws.com/snapshots/380868154114/csv-parse-bb298531-90c8-4ea4-9e58-e69528a63dee?versionId=6fgpyhd.8nY5C.lCw3Wj508ABg7NEeFQ&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECIaCXVzLWVhc3QtMSJHMEUCIBrFWuQ%2ByBJKtcbytww4IFKv4jUx2gfi3RoOfZbvO%2B6OAiEAoQzrux9PjSWKSgpbUMPUBhO44pJnrWoH%2BD78%2FypluTUq0QIIaRAAGgw3NDk2Nzg5MDI4MzkiDL1v5OdCqxTMXxX9RCquArWT%2BSvLmq9TuyhYxrfqj5XH%2Fu1W6XggZhvXrxThhojGE48DZx6OruMp2s3hL1XrhX4XNybKgSyEq%2FPVzHUZT%2FWaadoGyAwL3UX1UIb9nx5ud1N5JgfJY9yq2dyULcHkekSFNZjysKworMXTvBSQ6QnUbdtFiCYDiG9dzf93L1bVPz5rhDvV4OO3Yihd3Xlw1N2502rEFl8Vma3XBhrujUcwq1JV%2Bg%2BmD3yuP59TxP1lzpwfr8zpgJ3iDmy2gSPTqEYf%2FzTxP1dSIyg1xn4OiaNphBYc%2FUdpeTiTKnTTSyrC5uMAGgnlD8HVOVmiEwKAjvRydGWzj7SglD%2F9atRHkdKlbEs4752quCkMIY3uxcPi7I1tpcerWQLxykVCBMw%2BTOxPcvaDyI5RalSdC0jnMMbSpu8FOs4C0PWuO0wtiqcOntwYoa69%2BPgq9zJdfoYk5IGYpoRvwcLmEBlNprvFY35y3oi2l65pdR0azuZLx5GQbOMoLDjIHVgfWRwoDWZwEJqpGdsYU%2FRdeURnkZ10Oa2Dl6J%2FImHAC1MzcKW6K7jyGg2tSuIGqQdKsK%2FojP5Nex6pm%2F6VjabywAHV4HPiZK8nUl7Gc%2F4nyiU0sitqge1BrFGKY7HDviwVu0vLS%2F3576p7W4%2FRnfaWgFB9nUvCvGE7MO6Ifr8oCbHcEZ4E2uxMKlMNB0HQPfoGglLjATSwZaRe%2BaLu6m%2Fp%2BXXuole0BeFMxsd19LO6D4BOVwMj%2F5T62N7yraMr%2Bd%2FkprjCHueUO1k2zUR20MF7JU3o5%2FE3mQA%2BQn9pdAw9m4UFGSHkCpx4sklwT%2Fs70NkgcTqBcb6C3m7j7t7s0G5gipGzbm5hGHHC%2B22L7Q%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191206T022904Z&X-Amz-SignedHeaders=host&X-Amz-Expires=600&X-Amz-Credential=ASIA25DCYHY3RGKPH64O%2F20191206%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=a6ed929555cded0cbd5e207e5d55f3bc0f642ecd91d85d5009c80e83c279e44d",
+        "CodeSha256": "d24gBqa7aBOxUU5n/0EQp+208nhMY/MXk1Orsw1sxAo=",
+        "CodeSize": 37207
+    },
+    "LayerArn": "arn:aws:lambda:us-east-1:380868154114:layer:csv-parse",
+    "LayerVersionArn": "arn:aws:lambda:us-east-1:380868154114:layer:csv-parse:2",
+    "Description": "",
+    "CreatedDate": "2019-12-06T02:29:09.297+0000",
+    "Version": 2,
+    "CompatibleRuntimes": [
+        "nodejs8.10"
+    ]
+}

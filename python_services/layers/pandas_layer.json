@@ -1,0 +1,15 @@
+{
+    "Content": {
+        "Location": "https://prod-04-2014-layers.s3.amazonaws.com/snapshots/951661633871/pandas-5103fe7d-16ed-4a0a-8dc3-f44fbf00ff3a?versionId=WO6n4WC7fnC4G8tH5CeLBz6U0HyZi1tE&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEE8aCXVzLWVhc3QtMSJHMEUCIFko3dNIz3ZSFYpUzM92hbMT07SAvsMFnP9B7Fu6CF8bAiEA%2Bea0ywMNJNF9Q9vrJ4AAm4DrcmZwQ4kkLTBn3H8WFhIq2QIImP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw3NDk2Nzg5MDI4MzkiDLwRlnq%2FdYbahN4QkyqtAqKFhh5QXzYAxzhbL48G5f2fcfy0zO7y4FMIdyzhwZSkGJudypGI1eVOwa%2BnoDlz2X7is9d9NieIknO8OJ9By8o8mTM4kdt6dhZh%2BlzDVo9rM12XN0dIxuLbJYVI%2BFnsAX0MqaNTriouhhdUS345Heo9WZnTgj5Vu8Wavv7EfqvLRUuMFqfGniv7PmmhX6ChjL8CYnQ%2FApTVnSshwR%2FGo%2BFCAafYJVQuYuSAvwUDuTkkYEiBG6zKT15IW89rjX6NgRroUlsADELU7Z007f%2BvzlCyOvmQfHdD%2BJ%2FOZ%2Blciyn6MwAnwqI6uG%2FXLXvSxUN%2FHN2uKHqQyOXOQJ98IMffvS%2Bb431WG7fKNQgCwfLSM9ROcg5dF7e1Let4KOc%2FIs1ZxUmqBzJSiHiY80HDpsgw3tWw7wU6zwJM%2Fcxxwkj7MtbQoEQVVRoHoSaIltdp%2FpLHdW8GsDWlaPF%2B64%2Fo1d1dt6m7tTzJAmRhqTejUar%2Bk17QjtZwRuvuk5O3pm5DIZlezudRoNkfO0it2k1jeBOxAgs6%2FSiOBFOgSBq6qTju9x6I4QPqtR3bQSIUTz37usWMI8QgEogkbsLzmUPhJhyeGGmTM17y5zq0nHMGb34aYvDbkbSLCt8iHksLB9tGOXWMuSbl3H31V%2BfQxIafPXFVZER2kUIRZQlrh2jAmqtW7Bis78BbR4PgULTWqW1qwDd%2FO4lYJWkqNQwycFC%2FGOE62cIDAqcnGWAgqdDtdMcHHWsKmfNsZ0UMty%2FvY59uMTiMQxWgUDDUp48%2Fygn66kwK8jMGSJUGvGaj6d5CM%2BLrtgJ4z4pAx4vP5vaL%2Fj1oHZ2nULrQ6WdXJKzo%2FLIYlszYCNkX6JPXAQ%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20191207T234426Z&X-Amz-SignedHeaders=host&X-Amz-Expires=599&X-Amz-Credential=ASIA25DCYHY3T2SRJMTE%2F20191207%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=65f049eff78dc8f689f02f5e83c6b87f2edb0255b3ff06c8e7d6408848225ee5",
+        "CodeSha256": "IIKTm2zo6Q7qoHxs1yjfrS3J9x28m4u6wzgmReeT+7I=",
+        "CodeSize": 33040542
+    },
+    "LayerArn": "arn:aws:lambda:us-east-1:951661633871:layer:pandas",
+    "LayerVersionArn": "arn:aws:lambda:us-east-1:951661633871:layer:pandas:1",
+    "Description": "",
+    "CreatedDate": "2019-12-07T23:44:38.924+0000",
+    "Version": 1,
+    "CompatibleRuntimes": [
+        "python3.7"
+    ]
+}
