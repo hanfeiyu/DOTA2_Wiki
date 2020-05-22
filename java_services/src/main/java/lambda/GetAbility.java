@@ -20,7 +20,7 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
 	public HashMap<String, Object> handleRequest(HashMap<String, Object> request, Context context) {
         
     	Inspector inspector = new Inspector();
-    	inspector.addAttribute("API", "GetAbility");
+    	inspector.addAttribute("api", "GetAbility");
     	
     	// Check validations
     	String AbilityName = null;
@@ -39,7 +39,7 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
 //    	String DB_TABLE = System.getenv("DB_TABLE");
     	String DB_USERNAME = "root";
         String DB_PASSWORD = "yhf3012523";
-        String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false";
+        String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT";
     	String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
     	String DB_NAME = "DOTA2_Wiki";
     	String DB_TABLE = "Abilities";

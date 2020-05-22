@@ -20,7 +20,7 @@ public class GetPlayer implements RequestHandler<HashMap<String, Object>, HashMa
 	public HashMap<String, Object> handleRequest(HashMap<String, Object> request, Context context) {
         
     	Inspector inspector = new Inspector();
-    	inspector.addAttribute("API", "GetPlayer");
+    	inspector.addAttribute("api", "GetPlayer");
     	
     	// Check validations
     	String PlayerName = null;
@@ -39,7 +39,7 @@ public class GetPlayer implements RequestHandler<HashMap<String, Object>, HashMa
 //    	String DB_TABLE = System.getenv("DB_TABLE");
     	String DB_USERNAME = "root";
         String DB_PASSWORD = "yhf3012523";
-        String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false";
+        String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT";
     	String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
     	String DB_NAME = "DOTA2_Wiki";
     	String DB_TABLE = "Players";
