@@ -20,16 +20,17 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
 	public HashMap<String, Object> handleRequest(HashMap<String, Object> request, Context context) {
         
     	Inspector inspector = new Inspector();
-    	inspector.addAttribute("api", "GetAbility");
+    	inspector.addAttribute("api", "DropRec");
     	
-    	// Check validations
-    	String AbilityName = null;
-        if (request.containsKey("AbilityName")) {
-        	AbilityName = (String) request.get("AbilityName");
-        } else {
-        	inspector.addAttribute("response", "Error: AbilityName shall not be null.");
-        	return inspector.finish();
-        }
+    	// Check validations 
+    	// no need 
+//    	String AbilityName = null;
+//        if (request.containsKey("AbilityName")) {
+//        	AbilityName = (String) request.get("AbilityName");
+//        } else {
+//        	inspector.addAttribute("response", "Error: AbilityName shall not be null.");
+//        	return inspector.finish();
+//        }
         
     	// Get environmnet variables
 //    	String DB_URL = System.getenv("DB_URL");
@@ -42,7 +43,7 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
         String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT";
     	String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
     	String DB_NAME = "DOTA2_Wiki";
-    	String DB_TABLE = "Abilities";
+    	String DB_TABLE = "HerosCache";
         
     	// Register database driver
     	try {
@@ -61,35 +62,16 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
 			String query_use_db = "use " + DB_NAME + ";";	
 			statement.execute(query_use_db);
 			
-	        // Query data from database
-			JSONObject result = new JSONObject();
-			String query = "select * from " + DB_TABLE;
-			
-			// !All: select * from Abilities where AbilityName="xxx";
-			if (!AbilityName.equals("All")) {
-				query = query + " where AbilityName=\"" + AbilityName + "\"";
-			}
-	        query = query + ";";
-	        
-			JSONArray result_set = new JSONArray(); 
-	        
+	        // Truncate data from database
+			String query = "Truncate table " + DB_TABLE;
+				        
 	        // Execute the query and store result data
-			ResultSet query_result = statement.executeQuery(query);
+			statement.executeUpdate(query);
 			
-			while (query_result.next()) {
-				JSONObject tuple = new JSONObject();
-				tuple.put("AbilityName", query_result.getString("AbilityName"));
-				tuple.put("HeroName", query_result.getString("HeroName"));
-				tuple.put("AbilityType", query_result.getString("AbilityType"));
-				tuple.put("CD", query_result.getInt("CD"));
-				result_set.add(tuple);
-			}
-			result.put("results", result_set);
-	        
 			statement.close();
 			connection.close();
 	        
-			inspector.addAttribute("response", result);
+			inspector.addAttribute("response", "Drop the dataset successfully.");
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

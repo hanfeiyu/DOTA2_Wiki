@@ -12,10 +12,10 @@ import com.amazonaws.services.lambda.runtime.CognitoIdentity;
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
-import lambda.GetHero;
-import lambda.GetAbility;
-import lambda.GetItem;
-import lambda.GetPlayer;
+import lambda.GetRec;
+//import lambda.GetAbility;
+//import lambda.GetItem;
+//import lambda.GetPlayer;
 
 
 public class Local {
@@ -89,7 +89,7 @@ public class Local {
         // Initialize request
         HashMap<String, Object> request = new HashMap<String, Object>();
 		request.put("HeroName", "Huskar");
-//		request.put("HeroName", "All");
+		request.put("HeroName", "All");
 		request.put("AbilityName", "Sun Strike");
 //		request.put("AbilityName", "All");
 		request.put("ItemName", "Ocean Heart");
@@ -101,33 +101,33 @@ public class Local {
         // GetHero test
         //
         
-		GetHero getHero = new GetHero();
-        HashMap<String, Object> getHeroResult = getHero.handleRequest(request, c);        
-        System.out.println("GetHero result:\n" + getHeroResult.toString());
-        
+		GetRec getRec = new GetRec();
+        HashMap<String, Object> getRecResult = getRec.handleRequest(request, c);        
+        System.out.println("GetRec result:\n" + getRecResult.toString());
+//        
         //
         // GetAbility test
         //
         
-		GetAbility getAbility = new GetAbility();
-        HashMap<String, Object> getAbilityResult = getAbility.handleRequest(request, c);        
-        System.out.println("GetAbility result:\n" + getAbilityResult.toString());
+//		GetAbility getAbility = new GetAbility();
+//        HashMap<String, Object> getAbilityResult = getAbility.handleRequest(request, c);        
+//        System.out.println("GetAbility result:\n" + getAbilityResult.toString());
         
         //
         // GetItem test
         //
         
-		GetItem getItem = new GetItem();
-        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
-        System.out.println("GetItem result:\n" + getItemResult.toString());
-        
-        //
-        // GetPlayer test
-        //
-        
-        GetPlayer getPlayer = new GetPlayer();
-        HashMap<String, Object> getPlayerResult = getPlayer.handleRequest(request, c);        
-        System.out.println("GetPlayer result:\n" + getPlayerResult.toString());
+//		GetItem getItem = new GetItem();
+//        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
+//        System.out.println("GetItem result:\n" + getItemResult.toString());
+//        
+//        //
+//        // GetPlayer test
+//        //
+//        
+//        GetPlayer getPlayer = new GetPlayer();
+//        HashMap<String, Object> getPlayerResult = getPlayer.handleRequest(request, c);        
+//        System.out.println("GetPlayer result:\n" + getPlayerResult.toString());
 
     }
 }
