@@ -13,9 +13,8 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
 import lambda.GetRec;
-//import lambda.GetAbility;
-//import lambda.GetItem;
-//import lambda.GetPlayer;
+import lambda.DropRec;
+
 
 
 public class Local {
@@ -98,36 +97,21 @@ public class Local {
 //		request.put("PlayerName", "All");
         
         //
-        // GetHero test
+        // GetRec test
         //
         
 		GetRec getRec = new GetRec();
         HashMap<String, Object> getRecResult = getRec.handleRequest(request, c);        
         System.out.println("GetRec result:\n" + getRecResult.toString());
-//        
-        //
-        // GetAbility test
-        //
-        
-//		GetAbility getAbility = new GetAbility();
-//        HashMap<String, Object> getAbilityResult = getAbility.handleRequest(request, c);        
-//        System.out.println("GetAbility result:\n" + getAbilityResult.toString());
         
         //
-        // GetItem test
+        // DropCache test
         //
         
-//		GetItem getItem = new GetItem();
-//        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
-//        System.out.println("GetItem result:\n" + getItemResult.toString());
-//        
-//        //
-//        // GetPlayer test
-//        //
-//        
-//        GetPlayer getPlayer = new GetPlayer();
-//        HashMap<String, Object> getPlayerResult = getPlayer.handleRequest(request, c);        
-//        System.out.println("GetPlayer result:\n" + getPlayerResult.toString());
+        DropRec dropRec = new DropRec();
+        HashMap<String, Object> dropRecResult = dropRec.handleRequest(request, c);        
+        System.out.println("DropRec result:\n" + dropRecResult.toString());
+
 
     }
 }

@@ -39,7 +39,7 @@ public class GetRec implements RequestHandler<HashMap<String, Object>, HashMap<S
 //    	String DB_NAME = System.getenv("DB_NAME");
 //    	String DB_TABLE = System.getenv("DB_TABLE");
     	String DB_USERNAME = "root";
-        String DB_PASSWORD = "wtwt123";
+        String DB_PASSWORD = "yhf3012523";
         String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT";
     	String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
     	String DB_NAME = "DOTA2_Wiki";

@@ -15,7 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 
-public class GetAbility implements RequestHandler<HashMap<String, Object>, HashMap<String, Object>> {
+public class DropRec implements RequestHandler<HashMap<String, Object>, HashMap<String, Object>> {
 	
 	public HashMap<String, Object> handleRequest(HashMap<String, Object> request, Context context) {
         
@@ -43,7 +43,7 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
         String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT";
     	String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
     	String DB_NAME = "DOTA2_Wiki";
-    	String DB_TABLE = "HerosCache";
+    	String DB_TABLE = "HeroesCache";
         
     	// Register database driver
     	try {
@@ -63,7 +63,7 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
 			statement.execute(query_use_db);
 			
 	        // Truncate data from database
-			String query = "Truncate table " + DB_TABLE;
+			String query = "Truncate table " + DB_TABLE + ";";
 				        
 	        // Execute the query and store result data
 			statement.executeUpdate(query);
