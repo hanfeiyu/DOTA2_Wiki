@@ -14,19 +14,19 @@ import java.util.HashMap;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class GetAbility implements RequestHandler<HashMap<String, Object>, HashMap<String, Object>> {
+public class DeleteCache implements RequestHandler<HashMap<String, Object>, HashMap<String, Object>> {
 
 	public HashMap<String, Object> handleRequest(HashMap<String, Object> request, Context context) {
 
 		Inspector inspector = new Inspector();
-		inspector.addAttribute("api", "GetAbility");
+		inspector.addAttribute("api", "DeleteCache");
 
 		// Check validations
-		String AbilityName = null;
-		if (request.containsKey("AbilityName")) {
-			AbilityName = (String) request.get("AbilityName");
+		String DeleteHeroName = null;
+		if (request.containsKey("HeroName")) {
+			DeleteHeroName = (String) request.get("HeroName");
 		} else {
-			inspector.addAttribute("response", "Error: AbilityName shall not be null.");
+			inspector.addAttribute("response", "Error: Name need to be delete shall not be null.");
 			return inspector.finish();
 		}
 
@@ -37,11 +37,11 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
 //    	String DB_NAME = System.getenv("DB_NAME");
 //    	String DB_TABLE = System.getenv("DB_TABLE");
 		String DB_USERNAME = "root";
-		String DB_PASSWORD = "yhf3012523";
-		String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT";
+		String DB_PASSWORD = "wtwtwt123";
+		String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT&allowPublicKeyRetrieval=true";
 		String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
 		String DB_NAME = "DOTA2_Wiki";
-		String DB_TABLE = "Abilities";
+		String DB_TABLE = "HeroesCache";
 
 		// Register database driver
 		try {
@@ -60,16 +60,15 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
 			String query_use_db = "use " + DB_NAME + ";";
 			statement.execute(query_use_db);
 
-			// Query data from database
+			// Delete data from database
 			JSONObject result = new JSONObject();
+			String delete = "delete from " + DB_TABLE + " where HeroName=\"" + DeleteHeroName + "\"" + ";";
+			
+			// Execute the delete
+			statement.executeUpdate(delete);
+
+			// Query the cache
 			String query = "select * from " + DB_TABLE;
-
-			// !All: select * from Abilities where AbilityName="xxx";
-			if (!AbilityName.equals("All")) {
-				query = query + " where AbilityName=\"" + AbilityName + "\"";
-			}
-			query = query + ";";
-
 			JSONArray result_set = new JSONArray();
 
 			// Execute the query and store result data
@@ -77,10 +76,14 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
 
 			while (query_result.next()) {
 				JSONObject tuple = new JSONObject();
-				tuple.put("AbilityName", query_result.getString("AbilityName"));
 				tuple.put("HeroName", query_result.getString("HeroName"));
-				tuple.put("AbilityType", query_result.getString("AbilityType"));
-				tuple.put("CD", query_result.getInt("CD"));
+				tuple.put("PrimaryAttribute", query_result.getString("PrimaryAttribute"));
+				tuple.put("Faction", query_result.getString("Faction"));
+				tuple.put("Ability", query_result.getString("Ability"));
+				tuple.put("Item", query_result.getString("Item"));
+				tuple.put("Type", query_result.getString("Type"));
+				tuple.put("Complexity", query_result.getInt("Complexity"));
+				tuple.put("WinningRate", query_result.getFloat("WinningRate"));
 				result_set.add(tuple);
 			}
 			result.put("results", result_set);

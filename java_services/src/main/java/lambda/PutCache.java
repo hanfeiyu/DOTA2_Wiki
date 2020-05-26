@@ -14,21 +14,18 @@ import java.util.HashMap;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class GetAbility implements RequestHandler<HashMap<String, Object>, HashMap<String, Object>> {
+public class PutCache implements RequestHandler<HashMap<String, Object>, HashMap<String, Object>> {
 
 	public HashMap<String, Object> handleRequest(HashMap<String, Object> request, Context context) {
 
 		Inspector inspector = new Inspector();
-		inspector.addAttribute("api", "GetAbility");
+		inspector.addAttribute("api", "PutCache");
 
 		// Check validations
-		String AbilityName = null;
-		if (request.containsKey("AbilityName")) {
-			AbilityName = (String) request.get("AbilityName");
-		} else {
-			inspector.addAttribute("response", "Error: AbilityName shall not be null.");
-			return inspector.finish();
-		}
+//		if (request.get("HeroName").equals("")) {
+//			inspector.addAttribute("response", "Error: No new recommended hero need to be added.");
+//			return inspector.finish();
+//		}
 
 		// Get environmnet variables
 //    	String DB_URL = System.getenv("DB_URL");
@@ -37,11 +34,12 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
 //    	String DB_NAME = System.getenv("DB_NAME");
 //    	String DB_TABLE = System.getenv("DB_TABLE");
 		String DB_USERNAME = "root";
-		String DB_PASSWORD = "yhf3012523";
-		String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT";
+		String DB_PASSWORD = "wtwtwt123";
+		String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT&allowPublicKeyRetrieval=true";
 		String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
 		String DB_NAME = "DOTA2_Wiki";
-		String DB_TABLE = "Abilities";
+		String DB_TABLE = "HeroesCache";
+		String VIEW_HERO = "tempHero";
 
 		// Register database driver
 		try {
@@ -60,30 +58,40 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
 			String query_use_db = "use " + DB_NAME + ";";
 			statement.execute(query_use_db);
 
-			// Query data from database
+			// Insert into cache of data from view & delete the view
+			String insert = "insert into " + DB_TABLE + " select * from " + VIEW_HERO + ";";
+			String delete = "drop view " + VIEW_HERO + ";";
+			
+			// insert & check validations
+			try {
+				statement.executeUpdate(insert);
+				statement.executeLargeUpdate(delete);  // in case of duplicate
+			} catch (SQLException e) {}
+			
+			// Query data
+			String query = "select * from " + DB_TABLE + ";";
+			
 			JSONObject result = new JSONObject();
-			String query = "select * from " + DB_TABLE;
-
-			// !All: select * from Abilities where AbilityName="xxx";
-			if (!AbilityName.equals("All")) {
-				query = query + " where AbilityName=\"" + AbilityName + "\"";
-			}
-			query = query + ";";
-
 			JSONArray result_set = new JSONArray();
 
-			// Execute the query and store result data
+			// Execute the query
 			ResultSet query_result = statement.executeQuery(query);
-
-			while (query_result.next()) {
-				JSONObject tuple = new JSONObject();
-				tuple.put("AbilityName", query_result.getString("AbilityName"));
-				tuple.put("HeroName", query_result.getString("HeroName"));
-				tuple.put("AbilityType", query_result.getString("AbilityType"));
-				tuple.put("CD", query_result.getInt("CD"));
-				result_set.add(tuple);
-			}
-			result.put("results", result_set);
+			
+//			if(!(query_result.getString("HeroName").contentEquals(""))) { // in case no recommendation
+				while (query_result.next()) {
+					JSONObject tuple = new JSONObject();
+					tuple.put("HeroName", query_result.getString("HeroName"));
+					tuple.put("PrimaryAttribute", query_result.getString("PrimaryAttribute"));
+					tuple.put("Faction", query_result.getString("Faction"));
+					tuple.put("Ability", query_result.getString("Ability"));
+					tuple.put("Item", query_result.getString("Item"));
+					tuple.put("Type", query_result.getString("Type"));
+					tuple.put("Complexity", query_result.getInt("Complexity"));
+					tuple.put("WinningRate", query_result.getFloat("WinningRate"));
+					result_set.add(tuple);
+				}
+				result.put("results", result_set);
+//			}
 
 			statement.close();
 			connection.close();

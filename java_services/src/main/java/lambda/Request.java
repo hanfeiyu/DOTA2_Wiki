@@ -6,25 +6,25 @@ package lambda;
  */
 public class Request {
 
-    String name;
+	String name;
 
-    public String getName() {
-        return name;
-    }
-    
-    public String getNameALLCAPS() {
-        return name.toUpperCase();
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getNameALLCAPS() {
+		return name.toUpperCase();
+	}
 
-    public Request(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Request() {
+	public Request(String name) {
+		this.name = name;
+	}
 
-    }
+	public Request() {
+
+	}
 }
