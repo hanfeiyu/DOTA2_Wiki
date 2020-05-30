@@ -227,7 +227,8 @@ CREATE TABLE IF NOT EXISTS `Abilities`(
    `HeroName` VARCHAR(255),
    `AbilityType` VARCHAR(255),
    `CD` float,
-   PRIMARY KEY ( `AbilityName` )
+   PRIMARY KEY ( `AbilityName` ),
+   FOREIGN KEY ( `HeroName` ) REFERENCES Heroes(`HeroName`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `Abilities` VALUES
@@ -319,7 +320,7 @@ INSERT INTO `Players` VALUES
 ('MATUMBAMAN', 'Lycan', 'Liquid', 'TI7-(Liquid vs Secret)'),
 ('Maybe', 'Kunkka', 'LGD', 'TI6'),
 ('Ana', 'Io', 'OG', 'TI9-(Liquid vs OG)'),
-('BurNIng', 'Anti-Mage', 'DK', 'TI4'),
+('BurNIng', 'Anti-Mage', 'DK', 'TI4DK'),
 ('820', 'Vengeful Spirit', 'Ehome', 'TI1'),
 ('YaphetS', 'Shadow Fiend', 'DK', 'WCG2011'),
 ('Zhou', 'Naga Siren', 'IG', 'TI2-(IG vs NAVI)'),
@@ -335,29 +336,31 @@ INSERT INTO `Players` VALUES
 
 CREATE TABLE IF NOT EXISTS `Link`(
    `FamousScene` VARCHAR(255),
+   `PlayerName` VARCHAR(255),
    `WebLink` VARCHAR(255),
-   PRIMARY KEY ( `FamousScene` )
+   PRIMARY KEY ( `FamousScene` ),
+   FOREIGN KEY ( `PlayerName` ) REFERENCES Players(`PlayerName`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `Link` VALUES
-('VCD', 'www.douyu.com/60937'),
-('TI3-(Navi vs Alliance)', 'https://www.youtube.com/watch?v=mJ2JTVgJdJg'),
-('TI4', null),
-('TI6', null),
-('TI4DK', null),
-('TI1', null),
-('TI2', null),
-('ESL One Major', null),
-('TI5-(EG vs CDEC)', 'https://www.twitch.tv/videos/10218720'),
-('TI9-(Liquid vs OG)', 'https://www.youtube.com/watch?v=uM1m4bwL6I0&feature=youtu.be&t=13612'),
-('TI2-(IG vs NAVI)', 'https://www.youtube.com/watch?v=5pKNlizW3qk'),
-('TI4-(EG vs VG)', 'https://www.youtube.com/watch?v=X6vfII-8XAc'),
-('TI7', 'https://www.youtube.com/watch?v=raPjsavHru8'),
-('TI8-(LGD vs OG)', 'https://www.youtube.com/watch?v=cEM6725JmM4&feature=youtu.be&t=8h36m5s'),
-('7 death in a roll', 'https://www.youtube.com/watch?v=4EOBP_AUasU'),
-('TI7-(Liquid vs Secret)', 'https://www.youtube.com/watch?v=7y9EG7_B9bY&feature=youtu.be&t=6h28m38s'),
-('TI8', null),
-('WCG2011', null);
+('VCD', 'Zard-', 'www.douyu.com/60937'),
+('TI3-(Navi vs Alliance)', 'XBOCT', 'https://www.youtube.com/watch?v=mJ2JTVgJdJg'),
+('TI4', 'Mu', null),
+('TI6', 'Maybe', null),
+('TI4DK', 'BurNIng', null),
+('TI1', '820', null),
+('TI2', 'ChuaN', null),
+('ESL One Major', 'Yapzor', null),
+('TI5-(EG vs CDEC)', 'SumaiL', 'https://www.twitch.tv/videos/10218720'),
+('TI9-(Liquid vs OG)', 'Ana', 'https://www.youtube.com/watch?v=uM1m4bwL6I0&feature=youtu.be&t=13612'),
+('TI2-(IG vs NAVI)', 'Zhou', 'https://www.youtube.com/watch?v=5pKNlizW3qk'),
+('TI4-(EG vs VG)', 'fy', 'https://www.youtube.com/watch?v=X6vfII-8XAc'),
+('TI7', 'Miracle-', 'https://www.youtube.com/watch?v=raPjsavHru8'),
+('TI8-(LGD vs OG)', 'Ame', 'https://www.youtube.com/watch?v=cEM6725JmM4&feature=youtu.be&t=8h36m5s'),
+('7 death in a roll', 'rOtk', 'https://www.youtube.com/watch?v=4EOBP_AUasU'),
+('TI7-(Liquid vs Secret)', 'MATUMBAMAN', 'https://www.youtube.com/watch?v=7y9EG7_B9bY&feature=youtu.be&t=6h28m38s'),
+('TI8', 'Ori', null),
+('WCG2011', 'YaphetS', null);
 
 
 CREATE TABLE IF NOT EXISTS `HeroesCache`(
