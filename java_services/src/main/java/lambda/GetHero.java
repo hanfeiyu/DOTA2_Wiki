@@ -21,7 +21,6 @@ public class GetHero implements RequestHandler<HashMap<String, Object>, HashMap<
 		Inspector inspector = new Inspector();
 		inspector.addAttribute("api", "GetHero");
 
-		// Check validations
 		String HeroName = null;
 		if (request.containsKey("HeroName")) {
 			HeroName = (String) request.get("HeroName");
@@ -43,24 +42,20 @@ public class GetHero implements RequestHandler<HashMap<String, Object>, HashMap<
 		String DB_NAME = "Dota2wiki";
 		String DB_TABLE = "Heroes";
 
-		// Register database driver
 		try {
 			Class.forName(DB_DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
-		// Query data from database
 		try {
 			Connection connection;
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 			Statement statement = connection.createStatement();
 
-			// Use designated table
 			String query_use_db = "use " + DB_NAME + ";";
 			statement.execute(query_use_db);
 
-			// Query data from database
 			JSONObject result = new JSONObject();
 			String query = "select * from " + DB_TABLE;
 			if (!HeroName.equals("All")) {
@@ -69,8 +64,6 @@ public class GetHero implements RequestHandler<HashMap<String, Object>, HashMap<
 			query = query + ";";
 
 			JSONArray result_set = new JSONArray();
-
-			// Execute the query and store result data
 			ResultSet query_result = statement.executeQuery(query);
 
 			while (query_result.next()) {

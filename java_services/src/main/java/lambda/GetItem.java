@@ -22,11 +22,9 @@ public class GetItem implements RequestHandler<HashMap<String, Object>, HashMap<
     	Inspector inspector = new Inspector();
     	inspector.addAttribute("api", "GetItem");
     	
-    	// Check validations
     	String ItemName = null;
         if (request.containsKey("ItemName")) {
         	ItemName = (String) request.get("ItemName");
-        	System.out.println(ItemName);
         } else {
         	inspector.addAttribute("response", "Error: ItemName shall not be null.");
         	return inspector.finish();
@@ -47,15 +45,12 @@ public class GetItem implements RequestHandler<HashMap<String, Object>, HashMap<
 		String DB_TABLE2 = "Item_Upgrade";
 		String DB_TABLE3 = "Price_ItemType";
 		
-        
-    	// Register database driver
-    	try {
+     	try {
 			Class.forName(DB_DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
     	
-    	// Query data from database - Work
 		try {
 			Connection connection;
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -64,7 +59,6 @@ public class GetItem implements RequestHandler<HashMap<String, Object>, HashMap<
 			String query_use_db = "use " + DB_NAME + ";";	
 			statement.execute(query_use_db);
 			
-	        // Query Price from ItemName
 			JSONObject result = new JSONObject();
 			
 			String query = "select * from " + DB_TABLE1;
@@ -72,18 +66,13 @@ public class GetItem implements RequestHandler<HashMap<String, Object>, HashMap<
 				query = query + " where ItemName=\"" + ItemName + "\"";
 			}
 	        query = query + ";";
-
 	        
 			JSONArray result_set = new JSONArray(); 
-	        
-	        // Execute the query and store result data
 			ResultSet query_result = statement.executeQuery(query);
 			
-			
-			// no duplicate, so only one time next()
 			while(query_result.next()) {
 				JSONObject tuple = new JSONObject();
-				tuple.put("ItemName", query_result.getString("ItemName"));
+				tuple.put("ItemName", query_result.getString("ItemName"));	
 				
 				if(query_result.getInt("Price") == 0)
 					tuple.put("Price", null);
@@ -93,100 +82,57 @@ public class GetItem implements RequestHandler<HashMap<String, Object>, HashMap<
 				result_set.add(tuple);			
 			}
 			
-			
-
-
-
-			/**************/
-
-
-			// Query ItemType from Price - Work
-			// traversal of the result_set
 			for(int i = 0; i < result_set.size(); i++) {
-				JSONObject job = (JSONObject)result_set.get(i);    // work in org.json.simple
-				
+				JSONObject job = (JSONObject)result_set.get(i);    // work in org.json.simple				
 				String queryItemType = null;
+				
 				if(job.get("Price") == null)
 					queryItemType = "select ItemType from " + DB_TABLE3 + " where " + "Price=0 ;";
 				else {
 					Integer itemPrice = (Integer)job.get("Price");
 					queryItemType = "select ItemType from " + DB_TABLE3 + " where " + "Price=" + itemPrice + ";";
 				}
-
-				ResultSet query_ItemType = statement.executeQuery(queryItemType);
 				
+				ResultSet query_ItemType = statement.executeQuery(queryItemType);				
 				String itemType = null;
-
 				query_ItemType.next();
 				itemType = query_ItemType.getString("ItemType");
-						
-				
 				job.put("ItemType", itemType);
 			}
-
-		
-//			/**************/
-
-		
-			// Query Upgrade from ItemName 
-			// traversal of the result_set
-			for(int i = 0; i < result_set.size(); i++) {
-				JSONObject job = (JSONObject)result_set.get(i);    // work in org.json.simple
-				
-				String itemName = (String)job.get("ItemName");
-
-				String queryUpgrade = "select Upgrade from " + DB_TABLE2 + " where " + "ItemName=\"" + itemName + "\";";
-
-				ResultSet query_Upgrade = statement.executeQuery(queryUpgrade);
-				
-				String upgrade = null;
-				
-				// first case
-//				query_Upgrade.next();
-//				upgrade = query_Upgrade.getString("Upgrade");
-//				if (upgrade == null || upgrade.equals("null") )      // multiple value also work here	
-//					job.put("Upgrade", null);
-//				else 
-//					job.put("Upgrade", upgrade);
-				
-				// more than one case
-				JSONArray array = new JSONArray();
-				
-				while(query_Upgrade.next()) {
-//					System.out.println(query_Upgrade.getString("Upgrade"));
-					JSONObject save = (JSONObject)result_set.get(i); // in case of multiple cases
-					upgrade = query_Upgrade.getString("Upgrade");
-					System.out.println(upgrade);
-					// add Upgrade in save1
-					save.put("Upgrade", upgrade);
-					
-					// put save1 into a tmp JSONArray
-					array.add(save);
-					
-					// save1 = save2
-				}
-				// Finally, put all elements of JSONArray into result_set.
-				for(int j = 0; j < array.size(); j++) {
-					JSONObject tmp = (JSONObject)array.get(j);    // work in org.json.simple
-					result_set.add(tmp);
-				}				
-			}
-
-		
-//			/**************/
 			
-			result.put("results", result_set);
+			int size = result_set.size();
+			
+			JSONArray array = result_set;
+			
+			for(int i = 0; i < size; i++) {
+				JSONObject job = (JSONObject)result_set.get(i); 
+				String itemName = (String)job.get("ItemName");
+				String queryUpgrade = "select Upgrade from " + DB_TABLE2 + " where " + "ItemName=\"" + itemName + "\";";
+				ResultSet query_Upgrade = statement.executeQuery(queryUpgrade);
+				String upgrade = null;
+				while(query_Upgrade.next()) {
+					JSONObject save = (JSONObject)result_set.get(i); 
+					upgrade = query_Upgrade.getString("Upgrade");
+					if (upgrade == null || upgrade.equals("null")) {
+						save.put("Upgrade", null);
+						} else { 
+							save.put("Upgrade", upgrade);
+						}
+					array.add(new JSONObject(save));
+				}
+			}
+			
+			result.put("results", array);
 	        
 			statement.close();
 			connection.close();
-	        
 			inspector.addAttribute("response", result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			inspector.addAttribute("response", "Error: Failed to query data from database.");
 		}
-        
+		
     	return inspector.finish();
     }
 }

@@ -21,7 +21,6 @@ public class PutCache implements RequestHandler<HashMap<String, Object>, HashMap
 		Inspector inspector = new Inspector();
 		inspector.addAttribute("api", "PutCache");
 
-		// Check validations
 		String HeroName = null;
 		
         if (request.containsKey("HeroName")) {
@@ -31,7 +30,6 @@ public class PutCache implements RequestHandler<HashMap<String, Object>, HashMap
         	return inspector.finish();
         }
 
-        
 		// Get environmnet variables
 //    	String DB_URL = System.getenv("DB_URL");
 //    	String DB_USERNAME = System.getenv("DB_USERNAME");
@@ -46,24 +44,20 @@ public class PutCache implements RequestHandler<HashMap<String, Object>, HashMap
 		String DB_TABLE = "HeroesCache";
 		String VIEW_HERO = "tempHero";
 
-		// Register database driver
 		try {
 			Class.forName(DB_DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
-		// Query data from database
 		try {
 			Connection connection;
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 			Statement statement = connection.createStatement();
 
-			// Use designated table
 			String query_use_db = "use " + DB_NAME + ";";
 			statement.execute(query_use_db);
 
-			// Insert into cache of data from view
 			String insert = "insert into " + DB_TABLE + " select * from " + VIEW_HERO;
 			if (!HeroName.equals("All")) {
 				insert = insert + " where HeroName=\"" + HeroName + "\"";
@@ -71,10 +65,7 @@ public class PutCache implements RequestHandler<HashMap<String, Object>, HashMap
 			
 			insert = insert + ";";
 			
-
-			// Insert 
-			statement.executeUpdate(insert);
-			
+			statement.executeUpdate(insert);			
 			statement.close();
 			connection.close();
 			

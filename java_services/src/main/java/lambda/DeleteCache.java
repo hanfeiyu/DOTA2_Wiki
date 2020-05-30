@@ -21,7 +21,6 @@ public class DeleteCache implements RequestHandler<HashMap<String, Object>, Hash
 		Inspector inspector = new Inspector();
 		inspector.addAttribute("api", "DeleteCache");
 
-		// Check validations
 		String DeleteHeroName = null;
 		if (request.containsKey("HeroName")) {
 			DeleteHeroName = (String) request.get("HeroName");
@@ -43,30 +42,24 @@ public class DeleteCache implements RequestHandler<HashMap<String, Object>, Hash
 		String DB_NAME = "Dota2wiki";
 		String DB_TABLE = "HeroesCache";
 
-		// Register database driver
 		try {
 			Class.forName(DB_DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
-		// Query data from database
 		try {
 			Connection connection;
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 			Statement statement = connection.createStatement();
 
-			// Use designated table
 			String query_use_db = "use " + DB_NAME + ";";
 			statement.execute(query_use_db);
 
-			// Delete data from database
 			JSONObject result = new JSONObject();
 			String delete = "delete from " + DB_TABLE + " where HeroName=\"" + DeleteHeroName + "\"" + ";";
 			
-			// Execute the delete
 			statement.executeUpdate(delete);
-
 			statement.close();
 			connection.close();
 

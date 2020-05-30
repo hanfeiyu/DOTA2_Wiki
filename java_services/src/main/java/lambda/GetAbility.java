@@ -56,15 +56,12 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 			Statement statement = connection.createStatement();
 
-			// Use designated table
 			String query_use_db = "use " + DB_NAME + ";";
 			statement.execute(query_use_db);
 
-			// Query data from database
 			JSONObject result = new JSONObject();
 			String query = "select * from " + DB_TABLE;
 
-			// !All: select * from Abilities where AbilityName="xxx";
 			if (!AbilityName.equals("All")) {
 				query = query + " where AbilityName=\"" + AbilityName + "\"";
 			}
@@ -72,7 +69,6 @@ public class GetAbility implements RequestHandler<HashMap<String, Object>, HashM
 
 			JSONArray result_set = new JSONArray();
 
-			// Execute the query and store result data
 			ResultSet query_result = statement.executeQuery(query);
 
 			while (query_result.next()) {

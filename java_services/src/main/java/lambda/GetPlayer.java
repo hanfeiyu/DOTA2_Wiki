@@ -22,7 +22,6 @@ public class GetPlayer implements RequestHandler<HashMap<String, Object>, HashMa
     	Inspector inspector = new Inspector();
     	inspector.addAttribute("api", "GetPlayer");
     	
-    	// Check validations
     	String PlayerName = null;
         if (request.containsKey("PlayerName")) {
         	PlayerName = (String) request.get("PlayerName");
@@ -46,14 +45,12 @@ public class GetPlayer implements RequestHandler<HashMap<String, Object>, HashMa
 		String DB_TABLE2 = "Link";
 	
         
-    	// Register database driver
     	try {
 			Class.forName(DB_DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
     	
-    	// Query data from database
 		try {
 			Connection connection;
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -62,7 +59,6 @@ public class GetPlayer implements RequestHandler<HashMap<String, Object>, HashMa
 			String query_use_db = "use " + DB_NAME + ";";	
 			statement.execute(query_use_db);
 			
-	        // Query data from database
 			JSONObject result = new JSONObject();
 			String query = "select * from " + DB_TABLE1;
 			if (!PlayerName.equals("All")) {
@@ -72,7 +68,6 @@ public class GetPlayer implements RequestHandler<HashMap<String, Object>, HashMa
 	        
 			JSONArray result_set = new JSONArray(); 
 	        
-	        // Execute the query and store result data
 			ResultSet query_result = statement.executeQuery(query);
 			
 			while (query_result.next()) {
@@ -84,26 +79,16 @@ public class GetPlayer implements RequestHandler<HashMap<String, Object>, HashMa
 				result_set.add(tuple);
 			}
 			
-			
-			// Query Link from FamousScene
-			// traversal of the result_set
-
 			for(int i = 0; i < result_set.size(); i++) {
-				JSONObject job = (JSONObject)result_set.get(i);    // work in org.json.simple
-				
+				JSONObject job = (JSONObject)result_set.get(i);   
 				String queryLink = null;
-
 				String famousScene = (String)job.get("FamousScene");
 				queryLink = "select WebLink from " + DB_TABLE2 + " where " + "FamousScene=\"" + famousScene + "\"";
 
 				ResultSet query_Link = statement.executeQuery(queryLink);
-				
 				String link = null;
-
 				query_Link.next();
-				link = query_Link.getString("WebLink");
-				System.out.println(link);
-				
+				link = query_Link.getString("WebLink");				
 				job.put("WebLink", link);
 			}
 		

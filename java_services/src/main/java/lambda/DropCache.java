@@ -21,16 +21,6 @@ public class DropCache implements RequestHandler<HashMap<String, Object>, HashMa
 		Inspector inspector = new Inspector();
 		inspector.addAttribute("api", "DropCache");
 
-		// Check validations
-		// no need
-//    	String AbilityName = null;
-//        if (request.containsKey("AbilityName")) {
-//        	AbilityName = (String) request.get("AbilityName");
-//        } else {
-//        	inspector.addAttribute("response", "Error: AbilityName shall not be null.");
-//        	return inspector.finish();
-//        }
-
 		// Get environmnet variables
 //    	String DB_URL = System.getenv("DB_URL");
 //    	String DB_USERNAME = System.getenv("DB_USERNAME");
@@ -44,29 +34,23 @@ public class DropCache implements RequestHandler<HashMap<String, Object>, HashMa
 		String DB_NAME = "Dota2wiki";
 		String DB_TABLE = "HeroesCache";
 
-		// Register database driver
 		try {
 			Class.forName(DB_DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
-		// Query data from database
 		try {
 			Connection connection;
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 			Statement statement = connection.createStatement();
 
-			// Use designated table
 			String query_use_db = "use " + DB_NAME + ";";
 			statement.execute(query_use_db);
 
-			// Truncate data from database
 			String query = "Truncate table " + DB_TABLE;
-
-			// Execute the query and store result data
+ 
 			statement.executeUpdate(query);
-
 			statement.close();
 			connection.close();
 

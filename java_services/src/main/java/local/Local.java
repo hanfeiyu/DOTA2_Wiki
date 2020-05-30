@@ -97,11 +97,11 @@ public class Local {
 		//
 		
 		// test case for GetRec
-//		request.put("PrimaryAttribute", "Strength");
-//		request.put("Faction", "Radiant");
-//		request.put("HeroType", "Carry");
-//		request.put("Complexity", "Low Complexity");
-//		request.put("PlayerName", "Zard-");
+//		request.put("PrimaryAttribute", "All");
+//		request.put("Faction", "All");
+//		request.put("HeroType", "All");
+//		request.put("Complexity", "All");
+//		request.put("PlayerName", "All");
 		
 		
 //		GetRec getRec = new GetRec();
@@ -113,7 +113,7 @@ public class Local {
 		//
 		
 		// test case for PutCache
-//		request.put("HeroName", "Huskar");
+//		request.put("HeroName", "All");
 //		
 //		
 //		PutCache putCache = new PutCache();
@@ -125,22 +125,21 @@ public class Local {
 		//
 		
 		// test case for GetCache - no input
-//		request.put("123", "123");
-//		
+		request.put("123", "123");
 //		
 //		GetCache getCache = new GetCache();
 //        HashMap<String, Object> getCacheResult = getCache.handleRequest(request, c);        
-//        System.out.println("PutCache result:\n" + getCacheResult.toString());
+//        System.out.println("GetCache result:\n" + getCacheResult.toString());
 
 		
 		//
 		// DropCache test
 		//
         
-//        DropCache dropCache = new DropCache();
-//        HashMap<String, Object> dropCacheResult = dropCache.handleRequest(request, c);     
-//        System.out.println("DropCache result:\n" + dropCacheResult.toString());
-//        
+        DropCache dropCache = new DropCache();
+        HashMap<String, Object> dropCacheResult = dropCache.handleRequest(request, c);     
+        System.out.println("DropCache result:\n" + dropCacheResult.toString());
+        
        
 		//
 		// DeleteCache test
@@ -155,13 +154,13 @@ public class Local {
 		
 		// test case for GetHero, GetItem, GetPlayer, GetItem
 		
-//		request.put("HeroName", "All");
+//		request.put("HeroName", "Huskar");
 //		request.put("AbilityName", "Sun Strike");
-////		request.put("AbilityName", "All");
+//		request.put("AbilityName", "All");
 //		request.put("ItemName", "Ocean Heart");
 //		request.put("ItemName", "Apex");
 //		request.put("PlayerName", "Zard-");
-////		request.put("PlayerName", "All");
+//		request.put("PlayerName", "All");
 //		
 		
         
@@ -185,11 +184,11 @@ public class Local {
         // GetItem test
         //
         ///**************************************** HERE **********************************//
-		request.put("ItemName", "Kaky");
-
-		GetItem getItem = new GetItem();
-        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
-        System.out.println("GetItem result:\n" + getItemResult.toString());
+//		request.put("ItemName", "All");
+//
+//		GetItem getItem = new GetItem();
+//        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
+//        System.out.println("GetItem result:\n" + getItemResult.toString());
         
         //
         // GetPlayer test

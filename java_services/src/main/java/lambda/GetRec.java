@@ -19,9 +19,8 @@ public class GetRec implements RequestHandler<HashMap<String, Object>, HashMap<S
 	public HashMap<String, Object> handleRequest(HashMap<String, Object> request, Context context) {
 
 		Inspector inspector = new Inspector();
-		inspector.addAttribute("api", "GetRec"); // get all
+		inspector.addAttribute("api", "GetRec");
 
-		// Check validations
     	String PrimaryAttribute = null;
     	String Faction = null;
     	String HeroType = null;
@@ -79,37 +78,27 @@ public class GetRec implements RequestHandler<HashMap<String, Object>, HashMap<S
 		String DB_PLAYER = "Players";
 		String VIEW_HERO = "tempHero";
 
-		// Register database driver
 		try {
 			Class.forName(DB_DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
-		// Query data from database
 		try {
 			Connection connection;
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 			Statement statement = connection.createStatement();
 
-			// Use designated table
 			String query_use_db = "use " + DB_NAME + ";";
 			statement.execute(query_use_db);
 			
-			// Delete the view from database
 			String delete1 = "drop view " + VIEW_HERO + ";";
-//			statement.executeLargeUpdate(delete1);
 
-			// Execute the delete, in case of duplicate delete
 			try {
 				statement.executeLargeUpdate(delete1);
 			} catch(SQLException e) {}
 			
 
-			
-			// Get the REC			
-			
-			// Create view & Query data from database
 			String createView = "create view " + VIEW_HERO + " as select * from " + DB_TABLE;
 			
 			if (!PrimaryAttribute.equals("All")) {
@@ -125,7 +114,6 @@ public class GetRec implements RequestHandler<HashMap<String, Object>, HashMap<S
 				createView = createView + " and Complexity=\"" + Complexity + "\"";
 			}
 			
-			// connection with DB_PLAYER
 			if (!PlayerName.equals("All")) {
 				createView = createView + " and HeroName in (select Representative from " + DB_PLAYER + " where "
 						+ "PlayerName=\"" + PlayerName + "\")";
@@ -135,16 +123,13 @@ public class GetRec implements RequestHandler<HashMap<String, Object>, HashMap<S
 			
 			statement.executeLargeUpdate(createView);
 	
-			// Query date from view
 			String query = "select * from " + VIEW_HERO + ";"; 
 			
-			// Execute the query and store result data
 			ResultSet query_result = statement.executeQuery(query);  
 			JSONObject result = new JSONObject();			
 
-			// query_result empty or not
 			if(!query_result.isBeforeFirst()) {
-				result.put("results", null);	  // output format: response={"results":null}		
+				result.put("results", null);	  	
 				System.out.println("No result in query");
 			}
 			else {
@@ -160,64 +145,32 @@ public class GetRec implements RequestHandler<HashMap<String, Object>, HashMap<S
 					tuple.put("Type", query_result.getString("Type"));
 					tuple.put("Complexity", query_result.getString("Complexity"));
 					tuple.put("WinningRate", query_result.getFloat("WinningRate"));
-					
-					
 					result_set.add(tuple);
 				}
 				
 				
-				// traversal of the result_set
 				for(int i = 0; i < result_set.size(); i++) {
-					JSONObject job = (JSONObject)result_set.get(i);    // work in org.json.simple
-	//				System.out.println(job.get("HeroName"));
-					
-	//				System.out.println(job.get("PlayerName"));
-					String heroName = (String)job.get("HeroName");
-	//				System.out.println(heroName);
-	
-					String queryPlayer = "select PlayerName from " + DB_PLAYER + " where " + "Representative=\"" + heroName + "\";";
-	//				System.out.println(queryPlayer);				
-	
+					JSONObject job = (JSONObject)result_set.get(i);    
+					String heroName = (String)job.get("HeroName");	
+					String queryPlayer = "select PlayerName from " + DB_PLAYER + " where " + "Representative=\"" + heroName + "\";";	
 					ResultSet query_playerName = statement.executeQuery(queryPlayer);
-	//				System.out.println(query_playerName);
-					
-					
 					String playerName = null;
-	
 					while(query_playerName.next()) {
 						playerName = query_playerName.getString("PlayerName");
 					}
-					
-	//				System.out.println(playerName);
-					
 					job.put("PlayerName", playerName);
 				}
-				
-//				
-//				if(result_set.size() == 0)  // is here correct??? need test
-//					result.compute("results", null);
-//				else			
 				result.put("results", result_set);
-
-			
-			// Drop the view
-			// Delete the view from database
-//			String delete = "drop view " + VIEW_HERO + ";";
-//
-//			// Execute the delete
-//			statement.executeLargeUpdate(delete);
 			}
 			
 			statement.close();
 			connection.close();
-
 			inspector.addAttribute("response", result);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			inspector.addAttribute("response", "Error: Failed to query data from database.");
 		}
-
 		return inspector.finish();
 	}
 }

@@ -21,16 +21,6 @@ public class GetCache implements RequestHandler<HashMap<String, Object>, HashMap
 		Inspector inspector = new Inspector();
 		inspector.addAttribute("api", "DeleteCache");
 
-		// Check validations
-		// no need
-//		String DeleteHeroName = null;
-//		if (request.containsKey("HeroName")) {
-//			DeleteHeroName = (String) request.get("HeroName");
-//		} else {
-//			inspector.addAttribute("response", "Error: Name need to be delete shall not be null.");
-//			return inspector.finish();
-//		}
-
 		// Get environmnet variables
 //    	String DB_URL = System.getenv("DB_URL");
 //    	String DB_USERNAME = System.getenv("DB_USERNAME");
@@ -44,27 +34,22 @@ public class GetCache implements RequestHandler<HashMap<String, Object>, HashMap
 		String DB_NAME = "Dota2wiki";
 		String DB_TABLE = "HeroesCache";
 
-		// Register database driver
 		try {
 			Class.forName(DB_DRIVER);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
-		// Query data from database
 		try {
 			Connection connection;
 			connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 			Statement statement = connection.createStatement();
 
-			// Use designated table
 			String query_use_db = "use " + DB_NAME + ";";
 			statement.execute(query_use_db);
 			
-			// Query the cache
 			String query = "select * from " + DB_TABLE;
 
-			// Execute the query and store result data
 			ResultSet query_result = statement.executeQuery(query);
 			
 			JSONObject result = new JSONObject();						
@@ -86,7 +71,6 @@ public class GetCache implements RequestHandler<HashMap<String, Object>, HashMap
 
 			statement.close();
 			connection.close();
-
 			inspector.addAttribute("response", result);
 
 		} catch (SQLException e) {
