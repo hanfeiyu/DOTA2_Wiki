@@ -99,6 +99,7 @@ public class GetItem implements RequestHandler<HashMap<String, Object>, HashMap<
 				itemType = query_ItemType.getString("ItemType");
 				job.put("ItemType", itemType);
 			}
+
 			
 			int size = result_set.size();
 			
@@ -122,7 +123,7 @@ public class GetItem implements RequestHandler<HashMap<String, Object>, HashMap<
 				}
 			}
 			
-			result.put("results", array);
+			result.put("results", result_set);
 	        
 			statement.close();
 			connection.close();

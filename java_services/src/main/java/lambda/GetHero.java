@@ -66,6 +66,8 @@ public class GetHero implements RequestHandler<HashMap<String, Object>, HashMap<
 			JSONArray result_set = new JSONArray();
 			ResultSet query_result = statement.executeQuery(query);
 
+			// add Player
+			
 			while (query_result.next()) {
 				JSONObject tuple = new JSONObject();
 				tuple.put("HeroName", query_result.getString("HeroName"));
@@ -76,8 +78,26 @@ public class GetHero implements RequestHandler<HashMap<String, Object>, HashMap<
 				tuple.put("Type", query_result.getString("Type"));
 				tuple.put("Complexity", query_result.getString("Complexity"));
 				tuple.put("WinningRate", query_result.getFloat("WinningRate"));
+				
+//				String heroName = query_result.getString("HeroName");
+//				String queryPlayerName = "select PlayerName from Players where Representative=\"" + heroName + "\";";
 				result_set.add(tuple);
 			}
+			
+			for(int i = 0; i < result_set.size(); i++) {
+				JSONObject job = (JSONObject)result_set.get(i);    // work in org.json.simple				
+				String queryPlayerName = null;
+				
+				String heroName = (String)job.get("HeroName");
+				queryPlayerName = "select PlayerName from Players where Representative=\"" + heroName + "\";";
+				
+				ResultSet query_HeroName = statement.executeQuery(queryPlayerName);				
+				String playerName = null;
+				query_HeroName.next();
+				playerName = query_HeroName.getString("PlayerName");
+				job.put("PlayerName", playerName);
+			}
+			
 			result.put("results", result_set);
 
 			statement.close();

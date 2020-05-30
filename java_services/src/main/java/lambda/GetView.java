@@ -14,12 +14,12 @@ import java.util.HashMap;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class GetCache implements RequestHandler<HashMap<String, Object>, HashMap<String, Object>> {
+public class GetView implements RequestHandler<HashMap<String, Object>, HashMap<String, Object>> {
 
 	public HashMap<String, Object> handleRequest(HashMap<String, Object> request, Context context) {
 
 		Inspector inspector = new Inspector();
-		inspector.addAttribute("api", "GetCache");
+		inspector.addAttribute("api", "GetView");
 
 		// Get environmnet variables
 //    	String DB_URL = System.getenv("DB_URL");
@@ -32,7 +32,7 @@ public class GetCache implements RequestHandler<HashMap<String, Object>, HashMap
 		String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT&allowPublicKeyRetrieval=true";
 		String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
 		String DB_NAME = "Dota2wiki";
-		String DB_TABLE = "HeroesCache";
+		String DB_VIEW = "tempHero";
 
 		try {
 			Class.forName(DB_DRIVER);
@@ -48,18 +48,18 @@ public class GetCache implements RequestHandler<HashMap<String, Object>, HashMap
 			String query_use_db = "use " + DB_NAME + ";";
 			statement.execute(query_use_db);
 			
-			String query = "select * from " + DB_TABLE;
+			String query = "select * from " + DB_VIEW;
 
 			ResultSet query_result = statement.executeQuery(query);
 			
-			JSONObject result = new JSONObject();	
-			
+			JSONObject result = new JSONObject();			
+
 			if(!query_result.isBeforeFirst()) {
 				result.put("results", null);	  	
 			}
 			else {
 				JSONArray result_set = new JSONArray();
-				
+
 				while (query_result.next()) {
 					JSONObject tuple = new JSONObject();
 					tuple.put("HeroName", query_result.getString("HeroName"));
@@ -71,7 +71,7 @@ public class GetCache implements RequestHandler<HashMap<String, Object>, HashMap
 					tuple.put("Complexity", query_result.getString("Complexity"));
 					tuple.put("WinningRate", query_result.getFloat("WinningRate"));
 					result_set.add(tuple);
-				}
+				}				
 				result.put("results", result_set);
 			}
 

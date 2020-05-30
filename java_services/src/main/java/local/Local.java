@@ -13,6 +13,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
 import lambda.GetRec;
+import lambda.GetView;
 import lambda.GetCache;
 import lambda.PutCache;
 import lambda.DropCache;
@@ -93,21 +94,32 @@ public class Local {
 
 		
 		//
+		// GetView test
+		//
+//		request.put("", "");
+//
+//		GetView getView = new GetView();
+//		HashMap<String, Object> getViewResult = getView.handleRequest(request, c);
+//		System.out.println("GetRec result:\n" + getViewResult.toString());
+		
+		
+		
+		//
 		// GetRec test
 		//
 		
 		// test case for GetRec
-		request.put("PrimaryAttribute", "All");
-		request.put("Fraction", "All");
-		request.put("HeroType", "All");
-		request.put("Complexity", "All");
-		request.put("PlayerName", "Zard-");
-		
-		
-		GetRec getRec = new GetRec();
-		HashMap<String, Object> getRecResult = getRec.handleRequest(request, c);
-		System.out.println("GetRec result:\n" + getRecResult.toString());
-    
+//		request.put("PrimaryAttribute", "All");
+//		request.put("Fraction", "All");
+//		request.put("HeroType", "All");
+//		request.put("Complexity", "All");
+//		request.put("PlayerName", "Zard-");
+//		
+//		
+//		GetRec getRec = new GetRec();
+//		HashMap<String, Object> getRecResult = getRec.handleRequest(request, c);
+//		System.out.println("GetRec result:\n" + getRecResult.toString());
+//    
 		//
 		// PutCache test
 		//
@@ -154,7 +166,7 @@ public class Local {
 		
 		// test case for GetHero, GetItem, GetPlayer, GetItem
 		
-//		request.put("HeroName", "Huskar");
+		request.put("HeroName", "Huskar");
 //		request.put("AbilityName", "Sun Strike");
 //		request.put("AbilityName", "All");
 //		request.put("ItemName", "Ocean Heart");
@@ -184,11 +196,11 @@ public class Local {
         // GetItem test
         //
         ///**************************************** HERE **********************************//
-//		request.put("ItemName", "Radiance");
-//
-//		GetItem getItem = new GetItem();
-//        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
-//        System.out.println("GetItem result:\n" + getItemResult.toString());
+		request.put("ItemName", "Kaya");
+
+		GetItem getItem = new GetItem();
+        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
+        System.out.println("GetItem result:\n" + getItemResult.toString());
         
         //
         // GetPlayer test
