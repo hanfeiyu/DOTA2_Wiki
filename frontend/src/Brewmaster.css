@@ -1,0 +1,21 @@
+.descriptionTable {
+	float: left;
+	width: 50%;
+	margin-top: 20%;
+	margin-left: 25%;
+}
+
+.table {
+	background-color: white;
+}
+
+.back {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+body {
+    background-image: url(../utils/Brewmaster.png);
+	background-size: cover;
+	/* background-repeat: no-repeat; */
+}

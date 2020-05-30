@@ -1,0 +1,21 @@
+.input-group{
+	width: 50%;
+	margin-left: 450px;
+
+}
+
+.center{
+	margin-top: 300px;
+}
+
+button{
+	width: 20%;
+}
+
+body{
+    background-image: url(utils/background.jpg);
+	background-size: cover;
+	/* background-repeat: no-repeat; */
+}
+
+

@@ -1,0 +1,28 @@
+.recTable {
+	float: left;
+	width: 45%;
+	margin-top: 100px;
+	margin-left: 20px;
+}
+
+.cacheTable {
+	float: right;
+	width: 45%;
+	margin-top: 100px;
+	margin-right: 20px;
+}
+
+.table {
+	background-color: white;
+}
+
+.back {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+body {
+    background-image: url(../utils/background.jpg);
+	background-size: cover;
+	/* background-repeat: no-repeat; */
+}

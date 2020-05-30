@@ -1,1 +1,0 @@
-drop table sales.sales_records

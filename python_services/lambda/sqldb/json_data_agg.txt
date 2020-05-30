@@ -1,9 +1,0 @@
-"avg_order_processing_time":{},
-"avg_gross_margin":{},
-"avg_unit_sold":{},
-"max_unit_sold":{},
-"min_unit_sold":{},
-"total_unit_sold":{},
-"total_total_revenue":{},
-"total_total_profit":{},
-"total_orders":{}
