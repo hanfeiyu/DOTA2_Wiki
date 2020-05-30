@@ -41,7 +41,7 @@ public class DropCache implements RequestHandler<HashMap<String, Object>, HashMa
 		String DB_PASSWORD = "wtwtwt123";
 		String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT&allowPublicKeyRetrieval=true";
 		String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-		String DB_NAME = "DOTA2_Wiki";
+		String DB_NAME = "Dota2wiki";
 		String DB_TABLE = "HeroesCache";
 
 		// Register database driver
@@ -70,7 +70,7 @@ public class DropCache implements RequestHandler<HashMap<String, Object>, HashMa
 			statement.close();
 			connection.close();
 
-			inspector.addAttribute("response", "Drop the dataset successfully.");
+			inspector.addAttribute("response", "Drop the cache successfully.");
 
 		} catch (SQLException e) {
 			e.printStackTrace();

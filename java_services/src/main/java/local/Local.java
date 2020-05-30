@@ -13,6 +13,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.LambdaLogger;
 
 import lambda.GetRec;
+import lambda.GetCache;
 import lambda.PutCache;
 import lambda.DropCache;
 import lambda.DeleteCache;
@@ -88,36 +89,21 @@ public class Local {
 		};
 
 		// Initialize request
-		HashMap<String, Object> request = new HashMap<String, Object>();
-		
-		// test case for GetHero, GetItem, GetPlayer, GetItem
-		/*
-		request.put("HeroName", "Huskar");
-		request.put("HeroName", "All");
-		request.put("AbilityName", "Sun Strike");
-//		request.put("AbilityName", "All");
-		request.put("ItemName", "Ocean Heart");
-//		request.put("ItemName", "All");
-		request.put("PlayerName", "XG");
-//		request.put("PlayerName", "All");
-		*/
-		
-		// test case for GetRec
-		/*
-		request.put("PrimaryAttribute", "Strength");
-		request.put("Faction", "Radiant");
-		request.put("HeroType", "Carry");
-		request.put("Complexity", "1");
-		request.put("WinningRate", "0.5");
-		*/
-		
-		// test case for DeleteCache
-		request.put("HeroName", "Huskar");
+		HashMap<String, Object> request = new HashMap<String, Object>();	
+
 		
 		//
 		// GetRec test
 		//
-
+		
+		// test case for GetRec
+//		request.put("PrimaryAttribute", "Strength");
+//		request.put("Faction", "Radiant");
+//		request.put("HeroType", "Carry");
+//		request.put("Complexity", "Low Complexity");
+//		request.put("PlayerName", "Zard-");
+		
+		
 //		GetRec getRec = new GetRec();
 //		HashMap<String, Object> getRecResult = getRec.handleRequest(request, c);
 //		System.out.println("GetRec result:\n" + getRecResult.toString());
@@ -125,11 +111,28 @@ public class Local {
 		//
 		// PutCache test
 		//
-
+		
+		// test case for PutCache
+//		request.put("HeroName", "Huskar");
+//		
+//		
 //		PutCache putCache = new PutCache();
 //        HashMap<String, Object> putCacheResult = putCache.handleRequest(request, c);        
 //        System.out.println("PutCache result:\n" + putCacheResult.toString());
 
+		//
+		// GetCache test
+		//
+		
+		// test case for GetCache - no input
+//		request.put("123", "123");
+//		
+//		
+//		GetCache getCache = new GetCache();
+//        HashMap<String, Object> getCacheResult = getCache.handleRequest(request, c);        
+//        System.out.println("PutCache result:\n" + getCacheResult.toString());
+
+		
 		//
 		// DropCache test
 		//
@@ -142,11 +145,24 @@ public class Local {
 		//
 		// DeleteCache test
 		//
-       
-		DeleteCache deleteCache = new DeleteCache();
-		HashMap<String, Object> deleteCacheResult = deleteCache.handleRequest(request, c);     
-		System.out.println("DeleteCache result:\n" + deleteCacheResult.toString());
 		
+		// test case for DeleteCache
+//		request.put("HeroName", "Huskar");
+//		
+//		DeleteCache deleteCache = new DeleteCache();
+//		HashMap<String, Object> deleteCacheResult = deleteCache.handleRequest(request, c);     
+//		System.out.println("DeleteCache result:\n" + deleteCacheResult.toString());
+		
+		// test case for GetHero, GetItem, GetPlayer, GetItem
+		
+//		request.put("HeroName", "All");
+//		request.put("AbilityName", "Sun Strike");
+////		request.put("AbilityName", "All");
+//		request.put("ItemName", "Ocean Heart");
+//		request.put("ItemName", "Apex");
+//		request.put("PlayerName", "Zard-");
+////		request.put("PlayerName", "All");
+//		
 		
         
         //
@@ -168,10 +184,12 @@ public class Local {
         //
         // GetItem test
         //
-        
-//		GetItem getItem = new GetItem();
-//        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
-//        System.out.println("GetItem result:\n" + getItemResult.toString());
+        ///**************************************** HERE **********************************//
+		request.put("ItemName", "Kaky");
+
+		GetItem getItem = new GetItem();
+        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
+        System.out.println("GetItem result:\n" + getItemResult.toString());
         
         //
         // GetPlayer test

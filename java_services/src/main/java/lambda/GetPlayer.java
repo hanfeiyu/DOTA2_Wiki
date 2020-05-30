@@ -37,12 +37,14 @@ public class GetPlayer implements RequestHandler<HashMap<String, Object>, HashMa
 //    	String DB_PASSWORD = System.getenv("DB_PASSWORD");
 //    	String DB_NAME = System.getenv("DB_NAME");
 //    	String DB_TABLE = System.getenv("DB_TABLE");
-    	String DB_USERNAME = "root";
-        String DB_PASSWORD = "wtwt123";
-        String DB_URL = "jdbc:mysql://127.0.0.1:3306/?useSSL=false&serverTimezone=GMT";
-    	String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-    	String DB_NAME = "DOTA2_Wiki";
-    	String DB_TABLE = "Players";
+		String DB_USERNAME = "root";
+		String DB_PASSWORD = "wtwtwt123";
+		String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT&allowPublicKeyRetrieval=true";
+		String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
+		String DB_NAME = "Dota2wiki";
+		String DB_TABLE1 = "Players";
+		String DB_TABLE2 = "Link";
+	
         
     	// Register database driver
     	try {
@@ -62,7 +64,7 @@ public class GetPlayer implements RequestHandler<HashMap<String, Object>, HashMa
 			
 	        // Query data from database
 			JSONObject result = new JSONObject();
-			String query = "select * from " + DB_TABLE;
+			String query = "select * from " + DB_TABLE1;
 			if (!PlayerName.equals("All")) {
 				query = query + " where PlayerName=\"" + PlayerName + "\"";
 			}
@@ -81,6 +83,30 @@ public class GetPlayer implements RequestHandler<HashMap<String, Object>, HashMa
 				tuple.put("FamousScene", query_result.getString("FamousScene"));
 				result_set.add(tuple);
 			}
+			
+			
+			// Query Link from FamousScene
+			// traversal of the result_set
+
+			for(int i = 0; i < result_set.size(); i++) {
+				JSONObject job = (JSONObject)result_set.get(i);    // work in org.json.simple
+				
+				String queryLink = null;
+
+				String famousScene = (String)job.get("FamousScene");
+				queryLink = "select WebLink from " + DB_TABLE2 + " where " + "FamousScene=\"" + famousScene + "\"";
+
+				ResultSet query_Link = statement.executeQuery(queryLink);
+				
+				String link = null;
+
+				query_Link.next();
+				link = query_Link.getString("WebLink");
+				System.out.println(link);
+				
+				job.put("WebLink", link);
+			}
+		
 			result.put("results", result_set);
 	        
 			statement.close();

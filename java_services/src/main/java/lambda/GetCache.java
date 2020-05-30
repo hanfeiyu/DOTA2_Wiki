@@ -14,7 +14,7 @@ import java.util.HashMap;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class DeleteCache implements RequestHandler<HashMap<String, Object>, HashMap<String, Object>> {
+public class GetCache implements RequestHandler<HashMap<String, Object>, HashMap<String, Object>> {
 
 	public HashMap<String, Object> handleRequest(HashMap<String, Object> request, Context context) {
 
@@ -22,13 +22,14 @@ public class DeleteCache implements RequestHandler<HashMap<String, Object>, Hash
 		inspector.addAttribute("api", "DeleteCache");
 
 		// Check validations
-		String DeleteHeroName = null;
-		if (request.containsKey("HeroName")) {
-			DeleteHeroName = (String) request.get("HeroName");
-		} else {
-			inspector.addAttribute("response", "Error: Name need to be delete shall not be null.");
-			return inspector.finish();
-		}
+		// no need
+//		String DeleteHeroName = null;
+//		if (request.containsKey("HeroName")) {
+//			DeleteHeroName = (String) request.get("HeroName");
+//		} else {
+//			inspector.addAttribute("response", "Error: Name need to be delete shall not be null.");
+//			return inspector.finish();
+//		}
 
 		// Get environmnet variables
 //    	String DB_URL = System.getenv("DB_URL");
@@ -59,18 +60,34 @@ public class DeleteCache implements RequestHandler<HashMap<String, Object>, Hash
 			// Use designated table
 			String query_use_db = "use " + DB_NAME + ";";
 			statement.execute(query_use_db);
-
-			// Delete data from database
-			JSONObject result = new JSONObject();
-			String delete = "delete from " + DB_TABLE + " where HeroName=\"" + DeleteHeroName + "\"" + ";";
 			
-			// Execute the delete
-			statement.executeUpdate(delete);
+			// Query the cache
+			String query = "select * from " + DB_TABLE;
+
+			// Execute the query and store result data
+			ResultSet query_result = statement.executeQuery(query);
+			
+			JSONObject result = new JSONObject();						
+			JSONArray result_set = new JSONArray();
+			
+			while (query_result.next()) {
+				JSONObject tuple = new JSONObject();
+				tuple.put("HeroName", query_result.getString("HeroName"));
+				tuple.put("PrimaryAttribute", query_result.getString("PrimaryAttribute"));
+				tuple.put("Faction", query_result.getString("Faction"));
+				tuple.put("Ability", query_result.getString("Ability"));
+				tuple.put("Item", query_result.getString("Item"));
+				tuple.put("Type", query_result.getString("Type"));
+				tuple.put("Complexity", query_result.getString("Complexity"));
+				tuple.put("WinningRate", query_result.getFloat("WinningRate"));
+				result_set.add(tuple);
+			}
+			result.put("results", result_set);
 
 			statement.close();
 			connection.close();
 
-			inspector.addAttribute("response", "Delete the cache successfully.");
+			inspector.addAttribute("response", result);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

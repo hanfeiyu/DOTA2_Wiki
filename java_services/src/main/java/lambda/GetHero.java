@@ -37,10 +37,10 @@ public class GetHero implements RequestHandler<HashMap<String, Object>, HashMap<
 //    	String DB_NAME = System.getenv("DB_NAME");
 //    	String DB_TABLE = System.getenv("DB_TABLE");
 		String DB_USERNAME = "root";
-		String DB_PASSWORD = "yhf3012523";
-		String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT";
+		String DB_PASSWORD = "wtwtwt123";
+		String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT&allowPublicKeyRetrieval=true";
 		String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-		String DB_NAME = "DOTA2_Wiki";
+		String DB_NAME = "Dota2wiki";
 		String DB_TABLE = "Heroes";
 
 		// Register database driver
@@ -81,7 +81,7 @@ public class GetHero implements RequestHandler<HashMap<String, Object>, HashMap<
 				tuple.put("Ability", query_result.getString("Ability"));
 				tuple.put("Item", query_result.getString("Item"));
 				tuple.put("Type", query_result.getString("Type"));
-				tuple.put("Complexity", query_result.getInt("Complexity"));
+				tuple.put("Complexity", query_result.getString("Complexity"));
 				tuple.put("WinningRate", query_result.getFloat("WinningRate"));
 				result_set.add(tuple);
 			}

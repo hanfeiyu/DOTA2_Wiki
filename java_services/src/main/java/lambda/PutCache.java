@@ -22,11 +22,16 @@ public class PutCache implements RequestHandler<HashMap<String, Object>, HashMap
 		inspector.addAttribute("api", "PutCache");
 
 		// Check validations
-//		if (request.get("HeroName").equals("")) {
-//			inspector.addAttribute("response", "Error: No new recommended hero need to be added.");
-//			return inspector.finish();
-//		}
+		String HeroName = null;
+		
+        if (request.containsKey("HeroName")) {
+        	HeroName = (String)request.get("HeroName");
+        } else {
+        	inspector.addAttribute("response", "Error: HeroName shall not be null.");
+        	return inspector.finish();
+        }
 
+        
 		// Get environmnet variables
 //    	String DB_URL = System.getenv("DB_URL");
 //    	String DB_USERNAME = System.getenv("DB_USERNAME");
@@ -37,7 +42,7 @@ public class PutCache implements RequestHandler<HashMap<String, Object>, HashMap
 		String DB_PASSWORD = "wtwtwt123";
 		String DB_URL = "jdbc:mysql://localhost:3306/?useSSL=false&serverTimezone=GMT&allowPublicKeyRetrieval=true";
 		String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-		String DB_NAME = "DOTA2_Wiki";
+		String DB_NAME = "Dota2wiki";
 		String DB_TABLE = "HeroesCache";
 		String VIEW_HERO = "tempHero";
 
@@ -58,45 +63,22 @@ public class PutCache implements RequestHandler<HashMap<String, Object>, HashMap
 			String query_use_db = "use " + DB_NAME + ";";
 			statement.execute(query_use_db);
 
-			// Insert into cache of data from view & delete the view
-			String insert = "insert into " + DB_TABLE + " select * from " + VIEW_HERO + ";";
-			String delete = "drop view " + VIEW_HERO + ";";
+			// Insert into cache of data from view
+			String insert = "insert into " + DB_TABLE + " select * from " + VIEW_HERO;
+			if (!HeroName.equals("All")) {
+				insert = insert + " where HeroName=\"" + HeroName + "\"";
+			}
 			
-			// insert & check validations
-			try {
-				statement.executeUpdate(insert);
-				statement.executeLargeUpdate(delete);  // in case of duplicate
-			} catch (SQLException e) {}
+			insert = insert + ";";
 			
-			// Query data
-			String query = "select * from " + DB_TABLE + ";";
-			
-			JSONObject result = new JSONObject();
-			JSONArray result_set = new JSONArray();
 
-			// Execute the query
-			ResultSet query_result = statement.executeQuery(query);
+			// Insert 
+			statement.executeUpdate(insert);
 			
-//			if(!(query_result.getString("HeroName").contentEquals(""))) { // in case no recommendation
-				while (query_result.next()) {
-					JSONObject tuple = new JSONObject();
-					tuple.put("HeroName", query_result.getString("HeroName"));
-					tuple.put("PrimaryAttribute", query_result.getString("PrimaryAttribute"));
-					tuple.put("Faction", query_result.getString("Faction"));
-					tuple.put("Ability", query_result.getString("Ability"));
-					tuple.put("Item", query_result.getString("Item"));
-					tuple.put("Type", query_result.getString("Type"));
-					tuple.put("Complexity", query_result.getInt("Complexity"));
-					tuple.put("WinningRate", query_result.getFloat("WinningRate"));
-					result_set.add(tuple);
-				}
-				result.put("results", result_set);
-//			}
-
 			statement.close();
 			connection.close();
-
-			inspector.addAttribute("response", result);
+			
+			inspector.addAttribute("response", "Insert the cache successfully.");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
