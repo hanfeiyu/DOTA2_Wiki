@@ -1,3 +1,5 @@
+frontend/bin/
+frontend/.vscode/
 backend/target/
 backend/.metadata/
 *.DS_Store
