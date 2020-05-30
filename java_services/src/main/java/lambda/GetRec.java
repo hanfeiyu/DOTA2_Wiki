@@ -22,7 +22,7 @@ public class GetRec implements RequestHandler<HashMap<String, Object>, HashMap<S
 		inspector.addAttribute("api", "GetRec");
 
     	String PrimaryAttribute = null;
-    	String Faction = null;
+    	String Fraction = null;
     	String HeroType = null;
     	String Complexity = null;
     	String PlayerName = null;
@@ -34,10 +34,10 @@ public class GetRec implements RequestHandler<HashMap<String, Object>, HashMap<S
         	return inspector.finish();
         }
 
-        if (request.containsKey("Faction")) {
-        	Faction = (String) request.get("Faction");
+        if (request.containsKey("Fraction")) {
+        	Fraction = (String) request.get("Fraction");
         } else {
-        	inspector.addAttribute("response", "Error: Faction shall not be null.");
+        	inspector.addAttribute("response", "Error: Fraction shall not be null.");
         	return inspector.finish();
         }
         
@@ -104,8 +104,8 @@ public class GetRec implements RequestHandler<HashMap<String, Object>, HashMap<S
 			if (!PrimaryAttribute.equals("All")) {
 				createView = createView + " where PrimaryAttribute=\"" + PrimaryAttribute + "\"";
 			}
-			if (!Faction.equals("All")) {
-				createView = createView + " and Faction=\"" + Faction + "\"";
+			if (!Fraction.equals("All")) {
+				createView = createView + " and Fraction=\"" + Fraction + "\"";
 			}
 			if (!HeroType.equals("All")) {
 				createView = createView + " and Type=\"" + HeroType + "\"";
@@ -139,7 +139,7 @@ public class GetRec implements RequestHandler<HashMap<String, Object>, HashMap<S
 					JSONObject tuple = new JSONObject();
 					tuple.put("HeroName", query_result.getString("HeroName"));
 					tuple.put("PrimaryAttribute", query_result.getString("PrimaryAttribute"));
-					tuple.put("Faction", query_result.getString("Faction"));
+					tuple.put("Fraction", query_result.getString("Fraction"));
 					tuple.put("Ability", query_result.getString("Ability"));
 					tuple.put("Item", query_result.getString("Item"));
 					tuple.put("Type", query_result.getString("Type"));

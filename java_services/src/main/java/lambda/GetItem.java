@@ -102,7 +102,7 @@ public class GetItem implements RequestHandler<HashMap<String, Object>, HashMap<
 			
 			int size = result_set.size();
 			
-			JSONArray array = result_set;
+			JSONArray array = new JSONArray();
 			
 			for(int i = 0; i < size; i++) {
 				JSONObject job = (JSONObject)result_set.get(i); 
@@ -117,7 +117,7 @@ public class GetItem implements RequestHandler<HashMap<String, Object>, HashMap<
 						save.put("Upgrade", null);
 						} else { 
 							save.put("Upgrade", upgrade);
-						}
+							}
 					array.add(new JSONObject(save));
 				}
 			}

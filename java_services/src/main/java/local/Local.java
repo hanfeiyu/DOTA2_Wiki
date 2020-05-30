@@ -98,7 +98,7 @@ public class Local {
 		
 		// test case for GetRec
 //		request.put("PrimaryAttribute", "All");
-//		request.put("Faction", "All");
+//		request.put("Fraction", "All");
 //		request.put("HeroType", "All");
 //		request.put("Complexity", "All");
 //		request.put("PlayerName", "All");
@@ -125,7 +125,7 @@ public class Local {
 		//
 		
 		// test case for GetCache - no input
-		request.put("123", "123");
+//		request.put("123", "123");
 //		
 //		GetCache getCache = new GetCache();
 //        HashMap<String, Object> getCacheResult = getCache.handleRequest(request, c);        
@@ -136,9 +136,9 @@ public class Local {
 		// DropCache test
 		//
         
-        DropCache dropCache = new DropCache();
-        HashMap<String, Object> dropCacheResult = dropCache.handleRequest(request, c);     
-        System.out.println("DropCache result:\n" + dropCacheResult.toString());
+//        DropCache dropCache = new DropCache();
+//        HashMap<String, Object> dropCacheResult = dropCache.handleRequest(request, c);     
+//        System.out.println("DropCache result:\n" + dropCacheResult.toString());
         
        
 		//
@@ -184,11 +184,11 @@ public class Local {
         // GetItem test
         //
         ///**************************************** HERE **********************************//
-//		request.put("ItemName", "All");
-//
-//		GetItem getItem = new GetItem();
-//        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
-//        System.out.println("GetItem result:\n" + getItemResult.toString());
+		request.put("ItemName", "Radiance");
+
+		GetItem getItem = new GetItem();
+        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
+        System.out.println("GetItem result:\n" + getItemResult.toString());
         
         //
         // GetPlayer test

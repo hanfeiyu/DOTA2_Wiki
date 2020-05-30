@@ -59,7 +59,7 @@ public class GetCache implements RequestHandler<HashMap<String, Object>, HashMap
 				JSONObject tuple = new JSONObject();
 				tuple.put("HeroName", query_result.getString("HeroName"));
 				tuple.put("PrimaryAttribute", query_result.getString("PrimaryAttribute"));
-				tuple.put("Faction", query_result.getString("Faction"));
+				tuple.put("Fraction", query_result.getString("Fraction"));
 				tuple.put("Ability", query_result.getString("Ability"));
 				tuple.put("Item", query_result.getString("Item"));
 				tuple.put("Type", query_result.getString("Type"));
