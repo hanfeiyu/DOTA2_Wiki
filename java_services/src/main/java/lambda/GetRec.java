@@ -104,19 +104,27 @@ public class GetRec implements RequestHandler<HashMap<String, Object>, HashMap<S
 			if (!PrimaryAttribute.equals("All")) {
 				createView = createView + " where PrimaryAttribute=\"" + PrimaryAttribute + "\"";
 			}
-			if (!Fraction.equals("All")) {
+			if (!Fraction.equals("All") && !PrimaryAttribute.equals("All")) {
 				createView = createView + " and Fraction=\"" + Fraction + "\"";
+			} else if(!Fraction.equals("All")) {
+				createView = createView + " where Fraction=\"" + Fraction + "\"";				
 			}
-			if (!HeroType.equals("All")) {
+			if (!HeroType.equals("All") && (!PrimaryAttribute.equals("All") || !Fraction.equals("All"))) {
 				createView = createView + " and Type=\"" + HeroType + "\"";
+			} else if(!HeroType.equals("All")) {
+				createView = createView + " where Type=\"" + HeroType + "\"";				
 			}
-			if (!Complexity.equals("All")) {
+			if (!Complexity.equals("All") && ((!PrimaryAttribute.equals("All") || !Fraction.equals("All")) || !HeroType.equals("All"))) {
 				createView = createView + " and Complexity=\"" + Complexity + "\"";
+			} else if(!Complexity.equals("All")) {
+				createView = createView + " where Complexity=\"" + Complexity + "\"";				
 			}
-			
-			if (!PlayerName.equals("All")) {
+			if (!PlayerName.equals("All") && (((!PrimaryAttribute.equals("All") || !Fraction.equals("All")) || !HeroType.equals("All")) || !Complexity.equals("All"))) {
 				createView = createView + " and HeroName in (select Representative from " + DB_PLAYER + " where "
 						+ "PlayerName=\"" + PlayerName + "\")";
+			} else if(!PlayerName.equals("All")) {
+				createView = createView + " where HeroName in (select Representative from " + DB_PLAYER + " where "
+						+ "PlayerName=\"" + PlayerName + "\")";				
 			}
 						
 			createView = createView + ";";

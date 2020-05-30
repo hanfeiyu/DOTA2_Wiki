@@ -97,16 +97,16 @@ public class Local {
 		//
 		
 		// test case for GetRec
-//		request.put("PrimaryAttribute", "All");
-//		request.put("Fraction", "All");
-//		request.put("HeroType", "All");
-//		request.put("Complexity", "All");
-//		request.put("PlayerName", "All");
+		request.put("PrimaryAttribute", "All");
+		request.put("Fraction", "All");
+		request.put("HeroType", "All");
+		request.put("Complexity", "All");
+		request.put("PlayerName", "Zard-");
 		
 		
-//		GetRec getRec = new GetRec();
-//		HashMap<String, Object> getRecResult = getRec.handleRequest(request, c);
-//		System.out.println("GetRec result:\n" + getRecResult.toString());
+		GetRec getRec = new GetRec();
+		HashMap<String, Object> getRecResult = getRec.handleRequest(request, c);
+		System.out.println("GetRec result:\n" + getRecResult.toString());
     
 		//
 		// PutCache test
@@ -184,11 +184,11 @@ public class Local {
         // GetItem test
         //
         ///**************************************** HERE **********************************//
-		request.put("ItemName", "Radiance");
-
-		GetItem getItem = new GetItem();
-        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
-        System.out.println("GetItem result:\n" + getItemResult.toString());
+//		request.put("ItemName", "Radiance");
+//
+//		GetItem getItem = new GetItem();
+//        HashMap<String, Object> getItemResult = getItem.handleRequest(request, c);        
+//        System.out.println("GetItem result:\n" + getItemResult.toString());
         
         //
         // GetPlayer test
