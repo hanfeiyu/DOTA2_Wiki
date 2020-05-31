@@ -1,9 +1,14 @@
 # DOTA2_Wiki
 
 DOTA2_Wiki is a full-stack application which help users search the information of DOTA2 heros, items, abilities and famous players, as well as recommend potential suitable Heros based on users' interests.
+
 Users can choose recommended Heros from the recommendation table and store them
-in the cache. The cache will not be lost after users logout, but recommendation
+in the cache. 
+
+The cache will not be lost after users logout, but recommendation
 table will be regenerated everytime when users query for recommendation.
+
+***P.S.*** 
 
 DOTA2 is an Action RTS game, developed by Valve Corporation.
 
