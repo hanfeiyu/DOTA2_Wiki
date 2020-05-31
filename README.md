@@ -67,11 +67,13 @@ You may also want to familiarize with SAAF as well.
 #### Configuration
 Once all the things mentioned above are no longer a problem, you may start backend deployment.
 
-***RDS***
+***RDS***:
+
 Fist set up an Aurora serverless RDS instance and take care of your RDS password.
 Notice: Type of the RDS instance must be specified as `Aurora -> Serverless -> MySql`.
 
-***EC2***
+***EC2***:
+
 After RDS instance created, you can boot up a EC2 instance with any type (free
 tier: T2.micro) to create and populate data into RDS database:
 
@@ -96,7 +98,8 @@ created for RDS instance previously:
 mysql -h [your RDS endpoint] -P 3306 -u [your RDS username] -p
 ```
 
-***Lambda***
+***Lambda***:
+
 Let's start with building the generic lambda function package:
 
 ```
@@ -137,7 +140,8 @@ For each function:
 You may test each function individually by creating a simple test JSON using
 `Test` button, to ensure that all of them work correctly.
 
-***API Gateway***
+***API Gateway***:
+
 Similar to creating Lambda functions, each funtion will need an API Gateway to
 route invocations from anywhere in the world outside VPC.
 You will need to create ten corresponding API Gateways:
