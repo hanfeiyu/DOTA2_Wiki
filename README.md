@@ -133,7 +133,7 @@ For each function:
 | DB_PASSWORD | [your RDS password] |
 | DB_USERNAME | [your RDS username] |
 
-3. Set Timeout inside Basic settings to 1+ min.
+3. Set `Timeout` inside `Basic settings` to 1+ min.
 4. **MUST** upload `lambda_test-1.0-SNAPSHOT.jar` under `backend/target` and click
    `Save`.
 
