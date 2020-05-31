@@ -123,8 +123,8 @@ DOTA2_Wiki_GetHero
 ```
 
 For each function: 
-1. MUST set functions in the same VPC and sub-net(s) with your RDS instance.
-2. MUST Add four environment variables for each function:
+1. **MUST** set functions in the same VPC and sub-net(s) with your RDS instance.
+2. **MUST** Add four environment variables for each function:
 
 | **Key** | **Value** |
 | --------- | --------------- |
@@ -134,7 +134,7 @@ For each function:
 | DB_USERNAME | [your RDS username] |
 
 3. Set Timeout inside Basic settings to 1+ min.
-4. MUST upload `lambda_test-1.0-SNAPSHOT.jar` under `backend/target` and click
+4. **MUST** upload `lambda_test-1.0-SNAPSHOT.jar` under `backend/target` and click
    `Save`.
 
 You may test each function individually by creating a simple test JSON using
