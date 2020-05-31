@@ -1,7 +1,12 @@
 # DOTA2_Wiki
 
 DOTA2_Wiki is a full-stack application which help users search the information of DOTA2 heros, items, abilities and famous players, as well as recommend potential suitable Heros based on users' interests.
+Users can choose recommended Heros from the recommendation table and store them
+in the cache. The cache will not be lost after users logout, but recommendation
+table will be regenerated everytime when users query for recommendation.
+
 DOTA2 is an Action RTS game, developed by Valve Corporation.
+
 All our data is gathered from real DOTA2 data from the DOTA2 game client and official website.
 
 ## Architecture
@@ -83,19 +88,19 @@ ssh -i [your pem file] ubuntu@[your EC2 instance IP]
 sudo apt update && sudo apt install -y mysql-server mysql-client libmysqlclient-dev
 ```
 
-Then go on: 
+Then go on clone DOTA2_Wiki repo: 
 
 ```
 git clone https://github.com/hanfeiyu/DOTA2_Wiki
 cd DOTA2_Wiki
-cat Dota2Wiki.sql
 ```
 
-Copy and paste all the Sql codes into RDS instance. Login your RDS instance using the password you
+Import Dota2Wiki.sql file into RDS instance. Login your RDS instance using the password you
 created for RDS instance previously:
 
 ```
 mysql -h [your RDS endpoint] -P 3306 -u [your RDS username] -p
+source ~/DOTA2_Wiki/backend/Dota2Wiki.sql;
 ```
 
 ***Lambda***:
