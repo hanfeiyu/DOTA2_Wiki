@@ -181,7 +181,7 @@ Enjoy your journey with DOTA2 world!
 
 - [DOTA2_Wiki](https://github.com/hanfeiyu/DOTA2_Wiki)
 
-### @Developers
+### @Developers developed this application with :hearts:
 
 - [Hanfei Yu](https://github.com/hanfeiyu)
 - [Tong Wu](https://github.com/WhoenyWu)
