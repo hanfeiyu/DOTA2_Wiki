@@ -18,7 +18,7 @@ Dependencies includes Java 11+, PHP 7.3+, Maven 3.6+.
 
 #### Introduction
 DOTA2_Wiki frontend is developed using HTML/CSS and PHP/Bootstrap. Source code
-of frontend can be found in [frontend/src](./frontend/src).
+of frontend can be found under [frontend/src](./frontend/src).
 
 To make sure PHP files correctly parsed by Apache server, you'll have to check
 if your Apache server is running, then either reset your Apache server root path
@@ -38,7 +38,7 @@ Then copy frontend folder to Apache root path:
 sudo cp -r [your local DOTA2_Wiki]/frontend /Library/WebServer/Documents
 ```
 
-Check if your Apache server working or not by enter the following link into
+Check if your Apache server working or not by enter the following link in
 your Browser (Chrome preferred):
 
 ```
