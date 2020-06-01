@@ -16,8 +16,8 @@ All our data is gathered from real DOTA2 data from the DOTA2 game client and off
 
 ## Architecture
 
-DOTA2_Wiki is a full-stack application with server based frontend and
-serverless backend.
+DOTA2_Wiki is a full-stack application with **server-based** frontend and
+**serverless** backend.
 
 ### Environment
 
