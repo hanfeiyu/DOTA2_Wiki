@@ -10,11 +10,11 @@ table will be regenerated everytime when users query for recommendation.
 
 ***P.S.*** 
 
-DOTA2 is an Action RTS game, developed by Valve Corporation.
+DOTA2 is an Action RTS game, developed by [Valve Corporation](https://www.valvesoftware.com/).
 
 All our data is gathered from real DOTA2 data from the [DOTA2 game client](https://store.steampowered.com/app/570/Dota_2/) and
 [official website](https://dota2.com/).
-u
+
 ## Architecture
 
 DOTA2_Wiki is a full-stack application with **server-based** frontend and
