@@ -46,7 +46,7 @@ sudo apachectl restart
 Then copy frontend folder to Apache root path:
 
 ```
-sudo cp -r [your local DOTA2_Wiki]/frontend /Library/WebServer/Documents
+sudo cp -r [your_local_DOTA2_Wiki]/frontend /Library/WebServer/Documents
 ```
 
 Check if your Apache server working or not by enter the following link in
@@ -89,7 +89,8 @@ After RDS instance created, you can boot up a EC2 instance with any type (free
 tier: T2.micro) to create and populate data into RDS database:
 
 ```
-ssh -i [your pem file] ubuntu@[your EC2 instance IP]
+chmod 600 [your_pem_file]
+ssh -i [your_pem_file] ubuntu@[your_EC2_instance_IP]
 
 sudo apt update && sudo apt install -y mysql-server mysql-client libmysqlclient-dev
 ```
@@ -105,7 +106,7 @@ Import Dota2Wiki.sql file into RDS instance. Login your RDS instance using the p
 created for RDS instance previously:
 
 ```
-mysql -h [your RDS endpoint] -P 3306 -u [your RDS username] -p
+mysql -h [your_RDS_endpoint] -P 3306 -u [your_RDS_username] -p [your_RDS_password]
 source ~/DOTA2_Wiki/backend/Dota2Wiki.sql;
 ```
 
@@ -114,7 +115,7 @@ source ~/DOTA2_Wiki/backend/Dota2Wiki.sql;
 Let's start with building the generic lambda function package:
 
 ```
-cd [your local DOTA2_Wiki]/backend
+cd [your_local_DOTA2_Wiki]/backend
 mvn clean -f pom.xml
 mvn verify -f pom.xml
 ```
