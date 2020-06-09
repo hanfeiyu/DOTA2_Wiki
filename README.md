@@ -64,7 +64,8 @@ If seeing the background, then your frontend configuration is good to go.
 
 #### Introduction
 DOTA2_Wiki backend is developed using Java 11, Maven 3.6.3. Source code can be
-found under [backend/src/main/java/lambda](./backend/src/main/java/lambda)
+found under [backend/src/main/java/lambda](./backend/src/main/java/lambda).
+
 The backend is completely serverless deployed on AWS with multiple
 AWS services.
 
