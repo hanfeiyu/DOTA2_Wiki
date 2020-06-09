@@ -67,10 +67,8 @@ DOTA2_Wiki backend is developed using Java 11, Maven 3.6.3. Source code can be
 found under [backend/src/main/java/lambda](./backend/src/main/java/lambda).
 
 The backend is completely serverless deployed on AWS with multiple
-AWS services.
-
-Before deploy DOTA2_Wiki, you may want to familiarize with following AWS
-services:
+AWS services. Before deploying DOTA2_Wiki, you may want to familiarize with
+them first:
 
 - [AWS EC2](https://aws.amazon.com/ec2/)
 - [AWS Lambda](https://aws.amazon.com/lambda/)
