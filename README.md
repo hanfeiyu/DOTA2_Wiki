@@ -20,6 +20,8 @@ All our data is gathered from real DOTA2 data from the [DOTA2 game client](https
 DOTA2_Wiki is a full-stack application with **server-based** frontend and
 **serverless** backend.
 
+![Cloud Architecture](./CloudArch.png)
+
 ### Environment
 
 DOTA2_Wiki was developed on MacOS, using Eclipse IDE.

@@ -1,0 +1,102 @@
+body {
+	width: 100%;
+	height: 100%;
+}
+
+html,
+body,
+header,
+footer,
+div,
+section {
+	padding: 0;
+	margin: 0;
+}
+
+.clearfix:after {
+	content: '';
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+.sec-wrapper {
+	min-height: 100%;
+}
+
+.head-top {
+	float: right;
+	width: 400px;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	background: #E74445;
+}
+
+.main-section {
+	padding-bottom: 100px;
+	margin: 20px auto;
+}
+
+.foot {
+	width: 100%;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	font-size: 16px;
+	color: #fff;
+	background: #528FEA;
+	margin-top: -100px;
+}
+
+.div-wrapper {
+	width: 1200px;
+	margin: 0 auto;
+	background: #F4F6F9;
+	position: relative;
+}
+
+.cont-left {
+	width: 900px;
+	float: left;
+	margin-right: 10px;
+}
+
+.list-right {
+	float: left;
+}
+
+.cont-item {
+	width: 100%;
+	height: 200px;
+	background: tan;
+	margin-top: 10px;
+}
+
+.box-fixed {
+	width: 290px;
+	height: 800px;
+	padding-top: 20px;
+	background-color: #89A1C5;
+	position: relative;
+	top: 0px;
+	text-align: center;
+	color: #fff;
+}
+
+.tab_fix_bottom {
+	position: absolute;
+	bottom: 0px;
+	top: auto;
+}
+
+.tab_fix {
+	position: fixed;
+}
