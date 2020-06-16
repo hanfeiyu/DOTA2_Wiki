@@ -84,7 +84,7 @@ Once all the things mentioned above are no longer a problem, you may start backe
 ***RDS***:
 
 Fist set up an Aurora serverless RDS instance and take care of your RDS password.
-Notice: Type of the RDS instance must be specified as `Aurora -> Serverless -> MySql`.
+***Notice: Type of the RDS instance must be specified as `Aurora -> Serverless -> MySql`***
 
 ***EC2***:
 
