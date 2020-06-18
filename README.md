@@ -1,6 +1,6 @@
 # DOTA2_Wiki
 
-DOTA2_Wiki is a full-stack application which help users search the information of DOTA2 heros, items, abilities and famous players, as well as recommend potential suitable Heros based on users' interests.
+DOTA2_Wiki is a full-stack application which helps users search the information of DOTA2 heros, items, abilities and famous players, as well as recommend potential suitable Heros based on users' interests.
 
 Users can choose recommended Heros from the recommendation table and store them
 in the cache. 
